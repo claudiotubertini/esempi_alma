@@ -1,0 +1,122 @@
+{% load static %}
+{% load bootstrap_icons %}
+
+<!doctype html>
+<html>
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" /> 
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/png" href="{% static 'testi/images/favicon.ico' %}"/>
+  
+     <meta name="description" content="{{ description|default:'Editoria universitaria, esempi come utilizzare Almalibri' }}">
+    <meta name="keywords" content="{{ keywords|default:'Come usare i dati di almalibri' }}">
+    <title>{% block title %}I tutorials di Almalibri{% endblock %}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Reenie+Beanie&display=swap" rel="stylesheet">
+
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/navbar.css' %}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jq-3.6.0/jszip-2.5.0/dt-1.13.1/b-2.3.2/b-colvis-2.3.2/b-html5-2.3.2/b-print-2.3.2/r-2.4.0/rg-1.3.0/rr-1.3.1/sl-1.5.0/datatables.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/jq-3.6.0/jszip-2.5.0/dt-1.13.1/b-2.3.2/b-colvis-2.3.2/b-html5-2.3.2/b-print-2.3.2/r-2.4.0/rg-1.3.0/rr-1.3.1/sl-1.5.0/datatables.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+      .navbar{
+        font-size: 1.125rem !important;
+      }
+      .navbar-brand {
+        font-size: 1.125rem !important;
+      }
+    </style>
+
+</head>
+
+<body id="{% block body-id %}body{% endblock %}">
+    
+    {% block top-nav-wrapper %}
+  
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" aria-label="Guida ad almalibri">
+    <div class="container">
+      <a class="navbar-brand  bg-dark" href="/">Guida pratica ad Almalibri</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#guidadalmalibri07" aria-controls="guidadalmalibri07" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse justify-content-md-center" id="guidadalmalibri07">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{% url 'page' 'contact' %}">Contatti</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle active" href="" id="tutorials" data-bs-toggle="dropdown" aria-expanded="false">Esempi</a>
+            <ul class="dropdown-menu" aria-labelledby="tutorials">
+              <li class="p-3 pb-0 text-muted">
+                Per iniziare (in excel)</li>
+              <li><a class="dropdown-item" href="{% url 'page' 'introduzione'%}">Introduzione</a> </li>
+              <li class="p-3 pb-0 text-muted">Per chi preferisce python</li>
+              <li><a class="dropdown-item" href="{% url 'page' 'tutorial_elenco_insegnamenti'%}">Adozioni e vendite</a></li>
+              <li><a class="dropdown-item" href="{% url 'page' 'mercato' %}">Stima numero studenti</a></li>
+              <li><a class="dropdown-item" href="{% url 'page' 'insegnamenti_deployed' %}">Lista degli insegnamenti</a></li>
+              <li class="dropdown-divider"></li>
+              
+            </ul>
+          </li>
+          </ul>
+          <ul class="nav nav-pills">
+          <li class="nav-item active ">
+           &nbsp;&nbsp;
+            </li>
+           <li class="nav-item text-end">
+            <a class="nav-link active" aria-current="page" href="https://almalibri.it">Vai ad Almalibri</a>
+          </li>
+        </ul>
+      
+      </div>
+    </div>
+  </nav>
+  {% if messages %}
+  <ul class="messages">
+    {% for message in messages %}
+      <li class="{{ message.tags }}">
+        {{ message|safe }}
+        <a href="#" class="close">x</a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endif %}
+    {% endblock %}
+    
+    {% block content %}
+
+    {% endblock %}
+
+    <hr>
+
+<footer>
+    <div class="container">
+        <p>&copy; Almalibri srls 2020 - {% now 'Y' %}</p>
+    </div>
+</footer>
+
+   <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+   <script src="https://unpkg.com/feather-icons"></script>
+   
+</body>
+</html>

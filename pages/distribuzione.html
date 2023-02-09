@@ -1,0 +1,85 @@
+{% load static %}
+<div class="container">
+<h1 id="">Adozioni e vendite</h1>
+<h2>Adozioni</h2>
+<p>Continuiamo la nostra simulazione 
+  relativa agli insegnamenti del settore disciplinare LIN/07. Abbiamo già visto come contare il numero di insegnamenti in cui un testo potrebbe 
+  essere adottato, come determinare il numero (approssimativo) totale degli studenti che lo potrebbero acquistare. Proviamo ora a fare la stessa 
+  valutazione partendo da un editore o da un singolo volume, individuando così anche le zone in cui (forse) potrebbe realizzarsi la vendita.
+</p>
+<p>Ricarichiamo i dati originari attraverso il menu <code>Data -> Queries and Connections</code>.</p>
+         <p><img src="{% static 'testi/images/fig_18_ricaricare_dati.jpg' %}" width="700" height="190" 
+            alt="" /><br />
+            <strong>Fig. 15. Cliccando su <code>Data -> Queries and Connections</code> ricarichiamo i dati originari.</strong></p>
+<p>Cliccando sulla query iniziale potremo editare il caricamento dei dati dal file csv scaricato da Almalibri. 
+  Abbiamo ora bisogno di tutti i dati fra cui selezioneremo quelli dell'editore o del titolo
+  che ci interessa. Ricordiamoci di controllare che le colonne con il numero degli studenti siano effettivamente numeriche, altrimenti non
+  riusciremo in seguito a effettuare la somma del numero di studenti.
+</p>
+<p>Per effettuare la selezione bisogna cliccare su  <code>Data -> Filter </code>. A questo punto su ogni colonna appariranno dei bottoni (vedi fig. 16)
+  che consentono di ordinare e filtrare le righe attraverso un valore desiderato.
+</p>
+<p><img src="{% static 'testi/images/fig_21_adozioni_editore.jpg' %}" width="600" height="406" 
+  alt="" /><br />
+  <strong>Fig. 16 Cliccando su <code>Data</code> (1) e poi <code>Filter</code>> (2) compare il bottone (3) che consente di filtrare il valore desiderato.</strong></p>
+  <p>Ogni riga riporta un record di informazione:  è stata trovata su una pagina pubblica di un'università l'adozione di un testo, ovvero
+    un isbn, in un insegnamento, per un certo curriculum, 
+    eventualmente in un modulo o in un sottomodulo. Poichè vogliamo determinare il numero di studenti 
+iscritti al corso di laurea all'interno del quale un insegnamento ha fatto una certa adozione elimineremo tutte le righe che ripetono 
+lo stesso corso di laurea.
+  </p>
+  <p>Nella fig. 17 è possibile vedere come effettuare l'eliminazione delle righe duplicate.</p>
+<p><img src="{% static 'testi/images/fig_22_adozioni_eliminazione_doppi.jpg' %}" width="490" height="500" 
+  alt="" /><br />
+  <strong>Fig. 17. Menu <code>Data -> Data Tools -> Remove Duplicates</code>.</strong></p>
+ 
+  <p>Il conteggio del numero di studenti che potrebbero essere interessati all'acquisto viene qui fatto contando solo gli iscritti al primo anno per 
+    ogni corso di laurea. In questo sito sono presenti altre valutazioni numeriche a cui <a href="{% url 'page' 'mercato' %}">rimandiamo</a>.</p>
+    <p>Oltre alle approssimazioni già citate nella pagina <a href="{% url 'page' 'numero_studenti' %}">Quanti sono gli studenti?</a> dobbiamo 
+    ora aggiungerne altre, che sono generate da questa modalità di conteggio, ma che potrebbero essere evitate effettuando una valutazione 
+    puntuale.
+    <ul>
+      <li>Trascuriamo del tutto qui le differenze fra i curricula. Potrebbero esistere curricula
+        che suddividono gli studenti iscritti, ma questi vanno determinati caso per caso.
+        <li>Trascuriamo qui anche il grado di obbligatorietà dell'adozione. I titoli solo consigliati vengono valutati allo stesso modo dei
+           testi obbligatori. In questo caso si potrebbe automatizzare facilmente il conteggio ma per brevità qui non lo faremo.</li>
+        </li>
+    </ul>
+  </p>
+ 
+  <p>Il valore riportato è riferito solo ai corsi di laurea dove l'editore selezionato ha ottenuto 
+    delle adozioni. Per questo motivo è diverso da quello riportato nella <a href="{% url 'page' 'numero_studenti' %}">fig. 11</a> che si riferisce a tutti i corsi di laurea.
+  </p>
+  <p><img src="{% static 'testi/images/fig_23_mercato per editore.jpg' %}" width="600" height="399" 
+    alt="" /><br />
+    <strong>Fig. 18 Per ottenere una statistica di questo genere è necessario, dopo aver fatto la selezione dell'editore o del titolo, 
+      copiare i dati su un altro foglio in modo da eliminare le righe nascoste, poi effettuare la somma.</strong></p>
+  <h2>Il mercato di un singolo titolo</h2>
+<p>Partendo dalla tabella iniziale selezioniamo l'isbn che ci interessa, ad esempio una grammatica di spagnolo, 
+  eliminiamo le righe duplicate prendendo in considerazione, oltre ai corsi di laurea, le università (i corsi di laurea possono chiamarsi allo stesso modo in università 
+  diverse), e i tipi di laurea (vi sono a volte nomi identici sia per lauree triennali che per magistrali). Copiamo i dati su un altro foglio
+   ed effettuiamo 
+  le somme. Quello che otteniamo è un numero presuntivo 
+  delle possibili vendite, basate sulle adozioni ottenute, se tutti gli studenti acquistassero il volume, non vi fossero fotocopie, non vi
+   fosse nessun 
+  titolo concorrente e non vi fosse un mercato dell'usato.
+</p>
+<p><img src="{% static 'testi/images/fig_24_mercato_per_un_titolo.jpg' %}" width="600" height="255" 
+  alt="" /><br />
+  <strong>Fig. 19. Si veda anche la fig. 17 per la selezione dei dati.</strong></p>
+  <p>Per quanto riguarda la possibile distribuzione geografica delle vendite, Almalibri riporta la sede comunale e provinciale dei 
+    corsi di laurea. Si tratta più che altro di un punto di riferimento. Non è questo il luogo per parlare della diffusione delle 
+    librerie universitarie sul territorio nazionale.    
+  </p>
+<nav  aria-label="Leggi di più">
+    <ul class="pagination justify-content-end">
+        <li class="page-item">
+            <a class="page-link" href="{% url 'page' 'elenco_docenti' %}" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+      <li class="page-item"><a class="page-link" href="{% url 'page' 'elenco_docenti' %}">Precedente</a></li>
+     
+    </ul>
+  </nav>
+</div>

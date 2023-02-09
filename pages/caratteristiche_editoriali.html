@@ -1,0 +1,57 @@
+{% load static %}
+<div class="container">
+<h1 id="">Quali sono le caratteristiche editoriali dei testi più usati?</h1>
+<h2 id="">Scelta degli insegnamenti e scelta degli editori</h2>
+<p>Ottenuto l'elenco  delle adozioni, come abbiamo visto nella <a href="{% url 'page' 'elenco_adozioni' %}">pagina precedente</a>,
+   riorganizziamo il foglio excel, con l'obiettivo di evidenziare gli editori, gli insegnamenti e i titoli adottati. </p>
+     <p>Cliccando su <code>insert -> pivot table</code> possiamo realizzare una tabella pivot selezionado i campi
+         che si possono vedere a destra nella seguente immagine:</p>
+         <p><img src="{% static 'testi/images/fig_11_pivot.jpg' %}" width="600" height="381" 
+            alt="Tabella pivot che mostra alcuni campi raggruppati così da chiarire la distribuzione dei titoli dei diversi editori" /><br />
+            <strong>Fig. 5 Tabella pivot che mostra alcuni campi raggruppati.</strong></p>
+<p>Modificando la successione dei campi che trovate nel riquadro "rows" in basso a destra è possibile ottenere il raggruppamento preferito. </p>
+   <p>Nella Fig. 6, vediamo le adozioni suddivise per editore al Politecnico di Torino per l'insegnamento di lingua spagnola.</p>
+<p><img src="{% static 'testi/images/fig_12_pivot_editori.jpg' %}" width="600" height="381" 
+    alt="Adozioni per editore al Politecnico di Torino per l'insegnamento di lingua spagnola" /><br />
+<strong>Fig. 6 Dopo aver modificato l'ordine dei campi si ottengono le adozioni per editore 
+    suddivise per insegnamento, in questo caso di lingua spagnola</strong></p>
+    <h2 id="">Come contare le adozioni</h2>
+<p>La Fig. 7 mostra, nella maschera della tabella pivot, come operare le scelte dei campi e inserire il conteggio delle adozioni.
+  Nel riquadro in alto, denomianto "fields", scegliete i campi che vi interessano, facendo attenzione all'ordine. 
+  Questo può essere modificato nel campo in basso denominato "rows". Il riquadro "Values" ospita invece i valori
+  numerici. In questo caso il conteggio del numero di volte che si presenta un certo ISBN. 
+<p><img src="{% static 'testi/images/fig_14_pivot_isbn_count.jpg' %}" width="305" height="600"
+alt="I riquadri che consentono di selezionare i campi desiderati e relativo conteggio." /><br />
+<strong>Fig. 7 Nel riquadro "fields" scegliete le colonne che volete visualizzare, nel riquadro "rows" modificatene l'ordine,
+     infine nel riquadro "values" inserite il conteggio degli ISBN.</strong></p>
+<p>Possiamo ora visualizzare la frequenza, ovvero il conteggio del numero di volte in cui un titolo compare tra le adozioni.
+    Ricordate che questo numero è comprensivo dei diversi curricula e dei diversi, eventuali, moduli. Nel senso
+    che possono esservi corsi che appartengono a distinti curricula ma che si rivolgono ai medesimi studenti, 
+    cioè alla stessa "classe" di studenti. Questa frequenza non misura l'effettiva vendibilità del prodotto editoriale. </p>
+<p>Vedremo in seguito che il modo più efficace per stimare la numerosità degli studenti è
+    contare il numero degli iscritti al primo anno.</p>
+<p><img src="{% static 'testi/images/fig_15_pivot_editori_isbn_count.jpg' %}" width="600" height="318"
+alt="Ecco la frequenza con cui compaiono i diversi titoli adottati" /><br />
+<strong>Fig. 8 Ecco la frequenza con cui compaiono i diversi titoli adottati.</strong></p>
+<p>Le caratteristiche editoriali desiderate dovranno ora essere dedotte da quelle dei titoli più diffusi che questa tabella ha individuato.
+   La statistica si fa quindi da parte per lasciar spazio all'esperienza dell'editore.</p>
+
+
+<nav  aria-label="Leggi di più">
+    <ul class="pagination justify-content-end">
+        <li class="page-item">
+            <a class="page-link" href="{% url 'page' 'elenco_adozioni' %}" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+      <li class="page-item"><a class="page-link" href="{% url 'page' 'elenco_adozioni' %}">Precedente</a></li>
+      <li class="page-item"><a class="page-link" href="{% url 'page' 'count_of_insegnamenti' %}">Leggi di più</a></li>
+      <li class="page-item">
+        <a class="page-link" href="{% url 'page' 'count_of_insegnamenti' %}" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+          
+        </a>
+      </li>
+    </ul>
+  </nav>
+</div>

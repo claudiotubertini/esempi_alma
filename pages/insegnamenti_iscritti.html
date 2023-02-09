@@ -1,0 +1,97 @@
+
+{% load static %}
+<div class="container">
+<h1 id="come-usare-almalibri">Come selezionare gli insegnamenti per settore disciplinare</h1>
+<h2 id="download-dei-dati">Download dei dati</h2>
+<p>Cerchiamo tutte le adozioni, e quindi i corsi, i docenti e gli insegnamenti
+riferiti all'SSD che ci interessa. Ad esempio se progettiamo di
+pubblicare un corso di lingua spagnola, cercheremo tutte le adozioni
+appartenenti all'area 10 con SSD L-LIN/07. Ci faremo un'idea di cosa viene adottato in questi corsi, 
+troveremo i docenti a cui presentare la nostra novità e stimare, sia pur grossolanamente, l'ampiezza del mercato di riferimento, 
+il numero di studenti iscritti ai corsi di laurea che impartiscono gli insegnamenti trovati.</p>
+<p><a href="{{ MEDIA_URL }}/cerca_ssd.jpg"><img src="{% static 'images/cerca_ssd.jpg' %}" style="width:50%;"
+alt="Maschera di ricerca delle adozioni nel menu per abbonati" /></a><br />
+<strong>Fig. 1 Maschera di ricerca delle adozioni nel menu per abbonati</strong></p>
+<p>Scaricate il file csv e nominatelo, ad esempio,
+<code>almalibri_lin07.csv</code>. A questo punto aprite excel. Andate sul menu "Data" e poi su "insert from text". </p>
+<p><a href="{{ MEDIA_URL }}/fig_2.jpg"><img src="{% static 'images/fig_2.jpg' %}" style="width:50.0%;"
+alt="Cliccate prima su “Data” e poi su “insert from text”" /></a><br />
+<strong>Fig. 2 Cliccate prima su “Data” e poi su “insert from
+text”</strong></p>
+<p>Controllate che il separatore delle colonne sia il punto e virgola e
+quindi cliccate su “transform data”.</p>
+<p><a href="{{ MEDIA_URL }}/fig_3.jpg"><img src="{% static 'images/fig_3.jpg' %}" style="width:50.0%;"
+alt="Il separatore deve essere il punto e virgola e quindi cliccate su “transform data”" /></a><br />
+<strong>Fig. 3 Il separatore deve essere il punto e virgola e quindi
+cliccate su “transform data”</strong></p>
+<p>Siamo interessati solo ai docenti e all'elenco degli insegnamenti,
+eliminiamo quindi tutte le colonne da “isbn” fino a “laurea_iscritti” e
+” laurea_matricole”, queste ultime due le conserverete. Queste colonne
+riportano, rispettivamente gli iscritti totali al corso di laurea e gli
+iscritti al primo anno.</p>
+<p>Ora abbiamo una tabella che elenca, riga per riga, tutte le adozioni
+di questo settore, ripetendo università, corso di laurea, insegnamento,
+ecc. tante volte quanti sono i testi adottati. Procediamo quindi a
+ordinare le righe e a eliminare quelle ripetute. Otterremo così un
+elenco degli insegnamenti con i rispettivi docenti; nel caso vi siano
+più docenti per lo stesso corso, quando vi sono moduli e sottomoduli, avremo righe che ripetono lo stesso
+insegnamento ma con un diverso docente.</p>
+<h2 id="docenti">Docenti</h2>
+<p>Iniziamo con ordinare le righe per Università, Corso di laurea,
+curriculum e insegnamento. Se siamo interessati a individuare tutti i
+docenti, ricordiamo incidentalmente che Almalibri riporta anche i docenti a contratto, è sufficiente
+che rimuoviamo tutti i duplicati dalla colonna ‘insegnamento_prof’. La
+colonna immediatamente a fianco riporta la pagina web dove è
+possibile reperire i contatti di quel singolo docente. Abbiamo così
+ottenuto l’elenco dei docenti interessati a visionare il nostro
+volume.</p>
+<h2 id="insegnamenti">Insegnamenti</h2>
+<p>Per ottenere l’elenco degli insegnamenti rilevanti per il settore
+disciplinare che ci interessa eliminiamo i duplicati contemporaneamente
+dalle colonne uni_cod, laurea_nome, curr_nome, materia_nome. A questo
+punto potremo sommare i valori della colonna con gli iscritti al primo
+anno, una sola volta per ogni corso di laurea, e ottenere una stima della dimensione del mercato per il libro a cui stiamo
+pensando. Bisogna notare che nel momento in cui scriviamo, dicembre
+2022, Almalibri copre il 65% degli studenti, sarà quindi necessario
+estrapolare i dati per arrivare al 100%.</p>
+<p><a href="{{ MEDIA_URL }}/fig_4.jpg"><img src="{% static 'images/fig_4.jpg' %}" style="width:50.0%;" /></a><br />
+<strong>Fig. 4 La tabella riporta l’università, il corso di laurea,
+l’insegnamento, l’anno di corso, il docente e il numero di studenti
+iscritti al primo anno.</strong></p>
+<h2 id="adozioni">Adozioni</h2>
+<p>Ritorniamo ai dati caricati all’inizio del nostro lavoro. Vedi la
+figura 5.</p>
+<p><a href="{{ MEDIA_URL }}/fig_5.jpg"><img src="{% static 'images/fig_5.jpg' %}" style="width:50.0%;" /></a><br />
+<strong>Fig. 5 dove compare la connessione iniziale ai dati</strong></p>
+<p>Cliccando sulla query si apre il 'power query editor' ed è possibile
+cancellare alcune delle operazioni che avevamo fatto, ripristinare le
+colonne cancellate, controllare che il campo ISBN sia solo testo e
+ricaricare i dati. A questo punto ci appariranno tutte le 6347 righe
+disponibili. Ordiniamole come al solito per università, corso di laurea,
+curriculum e insegnamento otterremo l’elenco dei testi adottati nei
+diversi insegnamenti. Per sincerarsene si può andare nel menu offerta
+formativa su Almalibri dove la lettura del programma è più immediata e
+controllare se effettivamente l’insegnamento ha tutti e solo quei testi
+adottati.</p>
+<p><a href="{{ MEDIA_URL }}/fig_6.jpg"><img src="{% static 'images/fig_6.jpg' %}" style="width:50.0%;" /></a><br />
+<strong>Fig. 6 Alcuni insegnamenti selezionati con i relativi isbn dei
+testi adottati</strong></p>
+
+<nav  aria-label="Leggi di più">
+    <ul class="pagination justify-content-end">
+        <li class="page-item">
+            <a class="page-link" href=""aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+      <li class="page-item"><a class="page-link" href="#">Precedente</a></li>
+      <li class="page-item"><a class="page-link" href="{% url 'esempi:page' 'elenco_adozioni' %}">Leggi ancora</a></li>
+      <li class="page-item">
+        <a class="page-link" href="#" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+          
+        </a>
+      </li>
+    </ul>
+  </nav>
+  </div>

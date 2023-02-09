@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load bootstrap_icons %}
+{% load static %}
+
+{% block title %}{{ slug|capfirst }} - {{ block.super }}{% endblock %}
+
+{% block body-id %}{{ slug|slugify }}{% endblock %}
+
+{% block content %}
+
+    {% include page %}
+
+{% endblock %}

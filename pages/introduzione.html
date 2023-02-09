@@ -1,0 +1,71 @@
+{% load static %}
+<div class="container" style="font-size:1.1em;">
+  <h1>Introduzione</h1>
+<p><a href="https://almalibri.it">Almalibri</a> è una banca dati destinata agli operatori che si occupano di editoria universitaria, 
+    un settore in rapida crescita che si rivolge non solo agli studenti ma anche alle aziende e ai professionisti.
+     In questa pagina troverete una serie di esempi che consentono di aiutare la consultazione e l'uso dei dati di Almalibri.</p>
+<ul>
+<li>Quali sono i testi adottati in un settore disciplinare &nbsp;
+ 
+     <a class="btn btn-outline-primary"  style="padding: 6px 12px 6px 12px; line-height: 1.42857143; vertical-align: middle;"
+    href="{% url 'page' 'elenco_adozioni' %}">Leggi</a>
+
+</li>
+<li>quali caratteristiche editoriali trovano l'approvazione degli esperti della disciplina &nbsp;
+  <a class="btn btn-outline-primary"  style="padding: 6px 12px 6px 12px; line-height: 1.42857143; vertical-align: middle;"
+    href="{% url 'page' 'caratteristiche_editoriali' %}">Leggi</a>
+</li>
+<li>quanti sono i corsi in cui quella disciplina viene insegnata &nbsp;
+  <a class="btn btn-outline-primary"  style="padding: 6px 12px 6px 12px; line-height: 1.42857143; vertical-align: middle;"
+  href="{% url 'page' 'count_of_insegnamenti' %}">Leggi</a>
+</li>
+<li>il numero degli studenti che li frequenta &nbsp;
+  <a class="btn btn-outline-primary"  style="padding: 6px 12px 6px 12px; line-height: 1.42857143; vertical-align: middle;"
+  href="{% url 'page' 'numero_studenti' %}">Leggi</a>
+</li>
+<li>chi sono effettivamente i docenti che possono, con l'adozione, promuovere o meno il successo di un testo &nbsp;
+  <a class="btn btn-outline-primary"  style="padding: 6px 12px 6px 12px; line-height: 1.42857143; vertical-align: middle;"
+  href="{% url 'page' 'elenco_docenti' %}">Leggi</a>
+</li>
+</ul>
+<p>Infine quanli sono effettivamente</p>
+<ul>
+<li>i corsi dove le adozioni sono già presenti &nbsp;
+  <a class="btn btn-outline-primary"  style="padding: 6px 12px 6px 12px; line-height: 1.42857143; vertical-align: middle;"
+  href="{% url 'page' 'distribuzione' %}">Leggi</a><br />
+</li>
+<li>quante copie si può prevedere di distribuire e in quali località.
+</li>
+
+</ul>
+
+<p>Gli strumenti di lavoro utilizzati per rispondere a queste domande sono i più disparati: da CRM come <a href="https://dynamics.microsoft.com/en-us/">Microsoft Dynamics</a> o <a href="https://www.salesforce.com/eu/">Salesforce</a>, passando per strumenti di visualizzazione dati come <a href="https://www.tableau.com/">Tableau</a>, <a href="https://grafana.com/">Grafana</a> o <a href="https://powerbi.microsoft.com/en-au/">Power BI</a>.<br />
+Noi useremo il più semplice e immediato <a href="https://www.microsoft.com/en-US/microsoft-365/excel">excel</a> o in qualche caso <a href="https://jupyter-notebook.readthedocs.io/en/latest/notebook.html">Python Jupyter</a>, che sono in grado di dare ottimi risultati in breve tempo senza richiedere complesse installazioni.</p>
+
+<p>Per chi avesse già usato i dati di Almalibri e avesse competenze di gestione dati potrà trovare interessante leggere i seguenti post:
+  <ul class="list-group" style="width: 30%;">
+    <li class="list-group-item"><a href="{% url 'page' 'tutorial_elenco_insegnamenti'%}">Adozioni e vendite</a></li>
+              <li class="list-group-item"><a  href="{% url 'page' 'mercato' %}">Stima del numero di studenti</a></li>
+              <li class="list-group-item"><a href="{% url 'page' 'insegnamenti_deployed' %}">Lista degli insegnamenti</a></li>
+  
+  </ul>
+
+</p>
+<nav  aria-label="Leggi di più">
+    <ul class="pagination justify-content-end">
+      <li class="page-item">
+        <a class="page-link" href="{% url 'page' 'index' %}" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+      </li>
+  <li class="page-item"><a class="page-link" href="{% url 'page' 'index' %}">Precedente</a></li>
+      <li class="page-item"><a class="page-link" href="{% url 'page' 'elenco_adozioni' %}">Leggi di più</a></li>
+      <li class="page-item">
+        <a class="page-link" href="#" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+          
+        </a>
+      </li>
+    </ul>
+  </nav>
+</div>

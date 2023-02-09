@@ -1,0 +1,56 @@
+{% load static %}
+<div class="container">
+<h1 id="come-usare-almalibri">Quali sono i testi adottati in un settore disciplinare?</h1>
+<h2 id="download-dei-dati">Download dei dati</h2>
+<p>Cerchiamo tutte le adozioni, e quindi i corsi, i docenti e gli insegnamenti
+riferiti all'SSD che ci interessa. Ad esempio se progettiamo di
+pubblicare un corso di lingua spagnola, cercheremo tutte le adozioni
+appartenenti all'area 10 con SSD L-LIN/07. Ci faremo un'idea di cosa viene adottato in questi corsi, 
+troveremo i docenti a cui presentaremo la nostra novità libraria e stimare, sia pur grossolanamente, l'ampiezza del mercato di riferimento, 
+che consiste nel numero di studenti iscritti ai corsi di laurea che impartiscono gli insegnamenti trovati.</p>
+<p><img src="{% static 'testi/images/cerca_ssd.jpg' %}" width="400" height="162" alt="Maschera di ricerca delle adozioni nel menu per abbonati" /><br />
+<strong>Fig. 1 Maschera di ricerca delle adozioni nel menu per abbonati</strong></p>
+<p>Nel menu <code>Abbonati -> Adozioni </code> inserite i valori che vi interessano e scaricate il file csv e nominatelo, ad esempio,
+<code>almalibri_lin07.csv</code>. A questo punto aprite excel. Andate sul menu <code>Data -> from text/CSV</code>. </p>
+<p><img src="{% static 'testi/images/fig_2.jpg' %}" width="400" height="216"
+alt="Cliccate prima su 'Data' e poi su 'insert from text'" /><br />
+<strong>Fig. 2 Cliccate prima su "Data" e poi su "from text/CSV"</strong></p>
+<p>Controllate che il separatore delle colonne sia il punto e virgola e
+quindi cliccate su "transform data".</p>
+<p><img src="{% static 'testi/images/fig_3.jpg' %}" width="500" height="354"
+alt="Il separatore deve essere il punto e virgola e quindi cliccate su 'transform data'" /><br />
+<strong>Fig. 3 Il separatore deve essere il punto e virgola e quindi
+cliccate su "transform data"</strong></p>
+
+<h2 id="adozioni">Adozioni</h2>
+
+<p>Dopo aver caricato i dati ed essere quindi usciti dal "power query editor" ci appariranno tutte le 6347 righe
+disponibili. Ordiniamole  per università, corso di laurea,
+curriculum e insegnamento (Almalibri li chiama materia_nome, noi il più usuale 'insegnamento'). Su Microsoft Excel i menu sono 
+<code>Data -> Sort</code> dove sceglierete appunto i campi uni_cod, laurea_nome, curr_nome e materia_nome. Otterremo l'elenco dei testi adottati nei
+diversi insegnamenti.</p>
+<p><img src="{% static 'testi/images/fig_10_ordinamento.jpg' %}" width="500" height="263" /><br />
+  <strong>Fig. 4 Procedura di ordinamento per università, corso di laurea, curriculum e insegnamento</strong></p>
+<p> Per sincerarsene si può andare nel menu offerta
+formativa su Almalibri dove la lettura della bibliografia è più immediata e
+controllare se effettivamente gli insegnamenti hanno tutti e solo quei testi
+adottati.</p>
+
+<nav  aria-label="Leggi di più">
+    <ul class="pagination justify-content-end">
+        <li class="page-item">
+            <a class="page-link" href="{% url 'page' 'introduzione' %}" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+      <li class="page-item"><a class="page-link" href="{% url 'page' 'introduzione' %}">Precedente</a></li>
+      <li class="page-item"><a class="page-link" href="{% url 'page' 'caratteristiche_editoriali' %}">Leggi di più</a></li>
+      <li class="page-item">
+        <a class="page-link" href="{% url 'page' 'caratteristiche_editoriali' %}" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+          
+        </a>
+      </li>
+    </ul>
+  </nav>
+</div>

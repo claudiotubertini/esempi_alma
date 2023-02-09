@@ -1,0 +1,37 @@
+{% load static %}
+<div class="container">
+<h1 id="">Quanti sono gli insegnamenti di un settore disciplinare?</h1>
+<h2 id="">Contare gli insegnamenti</h2>
+<p>Proseguiamo il lavoro sulla stessa tabella pivot. Otteniamo ora una visualizzazione particolarmente chiara
+    degli elenchi delle adozioni effettuando il ragggruppamento per insegnamento (ovvero "materia_nome").
+</p>
+         <p><img src="{% static 'testi/images/fig_16_pivot_adozioni.jpg' %}" width="600" height="332" 
+            alt="Tabella pivot che mostra le adozioni per i diversi insegnamenti" /><br />
+            <strong>Fig. 9 Tabella pivot che mostra gli elenchi delle adozioni.</strong></p>
+<p>Ritorniamo sulla tabella generale con tutti i dati. Eliminiamo i valori ripetuti delle università, 
+  corsi di laurea e insegnamenti.
+</p>
+<p>Ecco quindi la tabella pivot che ci appare con la descrizione dei corsi di laurea, delle diverse università 
+  che contengono corsi del settore disciplinare su cui stiamo lavorando. In giallo sono evidenziati il numero di insegnamenti 
+  per università, in rosso quelli per ogni corso di laurea.</p>
+    <p><img src="{% static 'testi/images/fig_17_pivot_insegnamenti_count.jpg' %}" width="500" height="425" 
+        alt="Tabella pivot che mostra il numero di insegnamenti per corso di laurea e per università" /><br />
+        <strong>Fig. 10 Tabella pivot che mostra il numero di insegnamenti per corso di laurea (in rosso) e per università (in giallo).</strong></p>
+<nav  aria-label="Leggi di più">
+    <ul class="pagination justify-content-end">
+        <li class="page-item">
+            <a class="page-link" href="{% url 'page' 'caratteristiche_editoriali' %}" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+      <li class="page-item"><a class="page-link" href="{% url 'page' 'caratteristiche_editoriali' %}">Precedente</a></li>
+      <li class="page-item"><a class="page-link" href="{% url 'page' 'numero_studenti' %}">Leggi di più</a></li>
+      <li class="page-item">
+        <a class="page-link" href="{% url 'page' 'numero_studenti' %}" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+          
+        </a>
+      </li>
+    </ul>
+  </nav>
+</div>

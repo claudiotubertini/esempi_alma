@@ -1,0 +1,37 @@
+{% load static %}
+<div class="container">
+<h1 id="">I docenti</h1>
+<p>Ricarichiamo i dati originari attraverso il menu <code>data -> queries and connections</code>.</p>
+         <p><img src="{% static 'testi/images/fig_18_ricaricare_dati.jpg' %}" width="700" height="190" 
+            alt="" /><br />
+            <strong>Fig. 12. Cliccando su <code>data -> queries and connections</code> ricarichiamo i dati originari.</strong></p>
+<p>Ora abbiamo bisogno solo delle colonne con il nome del docente, dell'università (per ridurre la possibilità di omonimie) e del link alla pagina personale dell'Università di appartenenza.
+</p>
+<p>Elimineremo tutte le righe dove compaiono nomi ripetuti dei docenti.
+</p>
+<p><img src="{% static 'testi/images/fig_25_remove_duplicates.jpg' %}" width="600" height="318" 
+  alt="" /><br />
+  <strong>Fig. 13. Per rimuovere righe con valori duplicati usate il menu <code>Data -> Data Tools -> Remove Duplicates</code>.</strong></p>
+
+<p>Ecco quindi la tabella che riporta tutti i docenti che dovremo informare dell'esistenza del nostro volume al momento della pubblicazione.</p>
+    <p><img src="{% static 'testi/images/fig_20_docenti.jpg' %}" width="445" height="500" 
+        alt="" /><br />
+        <strong>Fig. 14. In questo caso solo un docente non risulta ancora nominato, gli altri sono disponibili.</strong></p>
+<nav  aria-label="Leggi di più">
+    <ul class="pagination justify-content-end">
+        <li class="page-item">
+            <a class="page-link" href="{% url 'page' 'numero_studenti' %}" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+      <li class="page-item"><a class="page-link" href="{% url 'page' 'numero_studenti' %}">Precedente</a></li>
+      <li class="page-item"><a class="page-link" href="{% url 'page' 'distribuzione' %}">Leggi ancora</a></li>
+      <li class="page-item">
+        <a class="page-link" href="{% url 'page' 'distribuzione' %}" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+          
+        </a>
+      </li>
+    </ul>
+  </nav>
+</div>

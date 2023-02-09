@@ -1,0 +1,96 @@
+<h1 id="stima-del-numero-di-studenti">Stima del numero di studenti</h1>
+<p>+++</p>
+<p>In questa breve guida utilizzeremo Microsoft excel per calcolare il numero di studenti che potrebbero frequentare un corso/insegnamento.<br />
+Prendiamo ad esempio l’Università di Urbino e da Almalibri, dal menu <code>Per abbonati -&gt; Adozioni</code> scarichiamo un file con tutte le adozioni e lo denominiamo ‘adozioni_urbino_insegnamenti.csv’. Per caricarlo in excel utilizziamo il menu <code>Data -&gt; From Text/CSV</code>.</p>
+<p>+++</p>
+<figure>
+<img src="attachment:b6ff67cf-edc6-40d1-b49a-41513b84fbd7.png" style="width:50.0%" alt="" /><figcaption>excel_1_low.png</figcaption>
+</figure>
+<p>+++</p>
+<p>Nella finestra di power query controllate che l’isbn sia caricato come testo e non come numero.</p>
+<p>+++ {“tags”: []}</p>
+<figure>
+<img src="attachment:667bd76f-60d6-4501-8f8f-b2da65fb2d17.png" style="width:50.0%" alt="" /><figcaption>excel_2_low.png</figcaption>
+</figure>
+<p>+++</p>
+<p>Calcoliamo ora una<br />
+1. stima del numero studenti per ogni corso, 2. aggiungiamo l’indicazione “da acquistare” quando un titolo compare per la prima volta nell’elenco dei volumi adottati all’interno di un corso di laurea. Infine utilizzeremo questi dati per individuare i titoli con il più ampio mercato.</p>
+<p>+++</p>
+<p>Una misura del numero degli studenti (vedi il <a href="http://164.92.205.238/mercato/">tutorial</a> dove è leggermente modificata) è la seguente:</p>
+<p><span class="math display">\[ stima = \left\{\begin{array}{lr} x = laureaIscritti \times \frac{1}{anniCorso}, &amp; \text{se } x \leq laureaMatricole\\
+        x = laureaMatricole, &amp;\text{negli altri casi }
+        \end{array}\right\} \]</span><br />
+dove <span class="math display">\[ anniCorso = \left\{\begin{array}{lr} 3, &amp; \text{se laurea triennale}\\
+                            5, &amp; \text{se laurea magistrale CU}\\
+                            6, &amp; \text{se laurea in medicina}\\
+                            2, &amp; \text{se laurea magistrale}
+        \end{array}\right\} \]</span></p>
+<p>+++</p>
+<p>Per effettuare questo calcolo in excel inseriremo prima una colonna con il numero di anni del corso, cioè 3 per le lauree triennali, 2 per le magistrali, ecc. (aggiungeremo i 6 anni di medicina fra un momento), utilizzando un merge con la tabella:</p>
+<p>+++</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Column1</th>
+<th style="text-align: right;">Anni</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">L</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">LM</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">LMCU</td>
+<td style="text-align: right;">5</td>
+</tr>
+</tbody>
+</table>
+<p>+++</p>
+<p>Per i dettagli su come effettuare il merge rimandiamo a questo tutorial <a href="https://www.ablebits.com/office-addins-blog/2018/11/14/excel-join-tables-power-query/?utm_source=pocket_mylist">How to join tables in Excel</a> oppure direttamente a quello di <a href="https://support.microsoft.com/en-us/office/merge-queries-power-query-fd157620-5470-4c0f-b132-7ca2616d17f9">Microsoft</a></p>
+<p>+++</p>
+<figure>
+<img src="attachment:915a9d62-7f05-453c-9a72-7303036d9002.png" style="width:50.0%" alt="" /><figcaption>excel_3_low.png</figcaption>
+</figure>
+<p>+++</p>
+<p>Abbiamo aggiunto una colonna che riporta gli anni di corso delle diverse lauree ma non quelli di medicina. Ora aggiungeremo un’altra colonna che ricopia lo stesso valore ma se il nome della laurea contiene la parola “medicina” lo cambia da 5 a 6.</p>
+<p>+++</p>
+<p><code>=IF(ISNUMBER(SEARCH("MEDICINA",$C2)), 6, [@[Table2.Anni]])</code></p>
+<p>+++</p>
+<p>La funzione excel cerca la parola “medicina” nella colonna C, se la trova inserisce il valore 6 altrimenti il valore che legge nella colonna “Table2.Anni”, quella che abbiamo aggiunto alla tabella al punto precedente. Nel nostro esempio, l’Università di Urbino, non ha un corso di Medicina. Passiamo quindi direttamente al calcolo del numero di studenti.</p>
+<p>+++</p>
+<p>Inseriamo la funzione in una colonna a parte: <code>=IF($AJ2&lt;($AI2/$AL2), $AJ2, ROUND($AI2/$AL2,0))</code> - AJ = colonna con il numero di iscritti al primo anno del corso di laurea - AL = colonna con il numero di anni del corso di laurea - AI = colonna con il numero di iscritti complessivo al corso di laurea.<br />
+La funzione sceglie il valore minimo tra il numero degli iscritti al primo anno e il valore della divisione tra il numero complessivo degli studenti e il numero di anni (valore che contiene anche gli studenti fuori corso). In genere il numero da scegliere è quello degli iscritti al primo anno, perché il numero medio di iscritti per ciascun anno contiene anche i fuori corso.<br />
+Il valore che si ottiene è una buona prima approssimazione, anche se non tiene conto di curricula e/o cfu, come la misura introdotta nel tutorial <a href="http://164.92.205.238/tutorial_elenco_insegnamenti/">Lauree, adozioni e vendite</a> a cui rimandiamo per un approfondimento.</p>
+<p>+++</p>
+<figure>
+<img src="attachment:41786c1f-4966-4b9b-8ea6-0b83b01b2ad0.png" style="width:50.0%" alt="" /><figcaption>excel_5_low.png</figcaption>
+</figure>
+<p>+++</p>
+<h3 id="volumi-già-acquistati-e-ancora-da-acquistare">Volumi già acquistati e ancora da acquistare</h3>
+<p>+++</p>
+<p>Come già accennato in <a href="http://164.92.205.238/tutorial_elenco_insegnamenti/">Lauree, adozioni e vendite</a> questa misura, vista la mobilità degli studenti di anno in anno, non è particolarmente rilevante. Giudicherà l’operatore se nell’ambito della sua analisi sia utile o meno.</p>
+<p>+++</p>
+<p>In power query selezionare i duplicati nella colonna degli isbn cliccando su <code>keep duplicates</code> in questo modo:</p>
+<p>+++</p>
+<figure>
+<img src="attachment:e1016fcf-4c9f-45a5-bab8-672c4683b963.png" style="width:50.0%" alt="" /><figcaption>excel_6.png</figcaption>
+</figure>
+<p>+++</p>
+<p>Nella sezione <code>transform</code>, sempre in power query, selezionare <code>group by</code></p>
+<p>+++</p>
+<figure>
+<img src="attachment:f64ff78c-b997-42d6-9a5a-f4ae0f52cf01.png" style="width:50.0%" alt="" /><figcaption>excel_7.png</figcaption>
+</figure>
+<p>+++</p>
+<p>Le colonne da raggruppare sono: laurea_nome e isbn. Si crea quindi una colonna con il conteggio degli isbn ripetuti e si unisce la tabella alla precedente con il numero calcolato di studenti. Il join va fatto su entrambe le colonne sia quella della laurea che dell’isbn. Se un isbn si presenta un numero maggiore di 1, all’interno dello stesso corso di laurea, sarà da considerare solo come acquistato una volta. Diversamente un isbn che si presenta in più corsi sarà da contare più volte, nel numero corrispondente dei corsi.</p>
+<p>+++</p>
+<figure>
+<img src="attachment:0f9bb6d7-e62e-4bab-b723-0a01bea26032.png" style="width:50.0%" alt="" /><figcaption>excel_8_low.png</figcaption>
+</figure>
+<p>+++</p>
+<p>Questo è solo un esempio. Si può ripetere lo stesso calcolo considerando il curriculum, l’insegnamento e il docente.</p>

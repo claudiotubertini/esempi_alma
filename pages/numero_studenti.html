@@ -1,0 +1,61 @@
+{% load static %}
+<div class="container">
+<h1 id="">Quanti sono gli studenti?</h1>
+<h2 id="">Contare gli studenti e le adozioni</h2>
+<p>Ricarichiamo i dati originari attraverso il menu <code>data -> queries and connections</code> così da recuperare le colonne e le righe 
+  ripetute che avevamo eliminato.</p>
+         <p><img src="{% static 'testi/images/fig_18_ricaricare_dati.jpg' %}" width="700" height="190" 
+            alt="" /><br />
+            <strong>Fig. 10 Cliccando su <code>data -> queries and connections</code> ricarichiamo i dati originari.</strong></p>
+<p>Cliccando sulla query iniziale possiamo ricaricare i dati utilizzando ora altre colonne. Abbiamo bisogno solo dei dati delle
+    università, del corso di laurea e delle colonne numeriche con il numero degli studenti. Useremo solo gli iscritti al primo anno ma come riferimento
+    conserveremo anche gli iscritti all'intero corso di laurea.
+</p>
+<p>Elimineremo le righe ripetute che riportano lo stesso corso di laurea. Il nostro obiettivo è stimare il numero di studenti
+    che costituiscono la "classe" di un corso che potrebbe acquistare un volume adottato. 
+    Considereremo, come abbiamo appena detto, solo gli iscritti al primo anno.
+</p>
+<p>A questo punto è necessario ricordare alcune approssimazioni a cui, per varie ragioni, siamo obbligati.</p>
+<ul>
+    <li>I numeri degli iscritti ai corsi di laurea sono quelli forniti dal Ministero dell'Università, in genere con un arretrato di 
+    un paio di anni. Alcuni corsi di nuova istituzione appaiono quindi privi di iscritti.
+    Per la stima che vogliamo fare questa limitazione non costituisce un problema. </li>
+   <li> A volte insegnamenti che appartengono
+    allo stesso settore disciplinare compaiono in più anni, ovviamente con livelli diversi di approfondimento. 
+    Lo stesso volume potrebbe essere adottato quindi in più insegnamenti per la stessa "classe". Considerando solo gli iscritti al primo anno,
+     invece di contare un numero stimato per ogni insegnamento, costituisce una buona approssimazione della stima del numero di possibili  
+acquirenti di un volume.</li></ul>
+<p>Il dato che ci sarebbe più utile,
+  così come avviene per l'editoria scolastica, è il numero degli studenti iscritti all'insegnamento. Purtroppo questo
+   non è praticamente mai disponibile
+  e spesso neppure le università lo conoscono, se non a posteriori contando gli esami sostenuti. Vediamo come effettuare una stima che riteniamo
+  comunque abbastanza convincente.
+<p>Come abbiamo visto nella pagina precedente contare gli insegnamenti di un settore disciplinare è sicuramente un dato interessante
+ma la valutazione numerica va fatta considerando solo i corsi di laurea.
+</p>
+<p>Ecco la tabella con il numero di studenti e i corsi di laurea.</p>
+    <p><img src="{% static 'testi/images/fig_19_numero_studenti.jpg' %}" width="500" height="339" 
+        alt="" /><br />
+        <strong>Fig. 11. Per ragioni di spazio la tabella riporta solo alcuni corsi di laurea. Il totale invece è la somma degli iscritti al primo anno
+          di tutti i corsi presenti in Almalibri.</strong></p>
+        <p>Il numero di studenti a cui si rivolge il testo che stiamo progettando è quindi 28143. Visto che la popolazione 
+          studentesca indicizzata è circa il 70% di quella effettiva, la stima diventa qualcosa intorno a 40000 studenti.
+        </p>
+<nav  aria-label="Leggi di più">
+    <ul class="pagination justify-content-end">
+        <li class="page-item">
+            <a class="page-link" href="{% url 'page' 'count_of_insegnamenti' %}" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+      <li class="page-item"><a class="page-link" href="{% url 'page' 'count_of_insegnamenti' %}">Precedente</a></li>
+      <li class="page-item"><a class="page-link" href="{% url 'page' 'elenco_docenti' %}">Leggi di più</a></li>
+      <li class="page-item">
+        <a class="page-link" href="{% url 'page' 'elenco_docenti' %}" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+          
+        </a>
+      </li>
+    </ul>
+  </nav>
+</div>

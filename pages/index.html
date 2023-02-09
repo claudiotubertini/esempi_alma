@@ -1,0 +1,238 @@
+
+{% load static %}
+{% block content %}
+  <section class="py-5 text-center container">
+    <div class="row py-lg-5">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="featurette-heading">Almalibri: la banca dati per l'editoria universitaria</h1>
+        <p class="lead fw-light">Come usare al meglio i dati sulle adozioni <br>e l'offerta formativa.</p>
+         <p>
+          <a href="{% url 'page' 'contact' %}" class="btn btn-primary my-2">Abbonamenti</a>
+        </p>
+      </div>
+    </div>
+  </section>
+ <div class="container">
+ <div class="row featurette">
+      <div class="col-md-7">
+        <h2 class="featurette-heading">Tutti i numeri per l'analisi del mercato e della concorrenza.</h2>
+          <p class="lead">Il panorama dell'offerta formativa universitaria. 
+            Gli insegnamenti, i docenti, i programmi e le bibliografie raccolti in una banca dati costantemente aggiornata. </p>
+          <p class="fs-6">Qui a fianco, come esempio, sono riportati gli editori che hanno il maggior numero di adozioni 
+            nel settore scientifico disciplinare della
+            storia delle relazioni internazionali.
+          </p>
+      </div>
+      <div class="col-md-5">
+        
+        <canvas id="sps06" width="800" height="750"></canvas>
+      </div>
+    </div>
+    <script>
+      new Chart(
+        document.getElementById('sps06'), {
+          type: 'bar',
+          data: {
+            labels:[
+            'Laterza',
+            'Routledge',
+            'Il Mulino',
+            'Oxford U. Press',
+            'MacMillan Springer',
+            'Cambridge U. Press'
+            ],
+            datasets: [{
+              label: 'Numero di adozioni',
+              backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+              borderColor: 'rgb(255, 99, 132)',
+              data: [138, 112, 82, 76, 61, 55],
+            }]
+          },
+          options: {
+            plugins:{
+              title: {
+                display: true,
+                text: 'Storia delle relazioni internazionali (SPS-06)'
+              }
+            }
+          }
+        });
+
+    </script>
+
+
+  <hr class="featurette-divider">
+     <div class="row featurette">
+      <div class="col-md-7 order-md-2">
+        <h2 class="featurette-heading">Business information per l'editoria universitaria. </h2>
+        <p class="lead">
+        Almalibri raccoglie e organizza tutte le informazioni pubbliche sulle Università italiane. Uno strumento indispensabile
+         a sostegno della promozione e pianificazione editoriale, facilmente integrabile nei principali ERP e CRM.</p>
+         <p class="fs-6">Qui a fianco gli editori con il maggior numero di adozioni nel
+          diritto tributario.
+        </p>
+      </div>
+      <div class="col-md-5 order-md-1">
+        <!-- <img src="{% static 'images/sps06.png' %}" class="img-fluid" alt="editori sps 06" width="1778" height="1567"> -->
+        <canvas id="ius12" width="800" height="750"></canvas>
+      </div>
+    </div>
+    <script>
+      const labels = [
+      'Giappichelli',
+      'Wolters Kluwer Cedam',
+      'Utet Giuridica',
+      'Wolters Kluwer',
+      'Giuffrè',
+      'Pacini',
+      'IBFD',
+      'Edward Elgar',
+      'Il Fisco',
+      'La Tribuna'
+      ];
+    
+      const data = {
+        labels: labels,
+        datasets: [{
+          label: 'Numero di adozioni',
+          backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+          borderColor: 'rgb(255, 99, 132)',
+          data: [261, 179, 88, 35, 27, 27, 16, 14, 13, 10],
+        }]
+      };
+    
+      const config = {
+        type: 'bar',
+        data: data,
+        options: {
+          plugins:{
+            title: {
+              display: true,
+              text: 'Diritto tributario (IUS-12)'
+            }
+          }
+        }
+      };
+
+
+      new Chart(
+        document.getElementById('ius12'),
+        config
+      );
+
+    </script>
+
+<hr class="featurette-divider">
+<h2>Tutto il catalogo dei testi universitari adottati (in commercio e non in commercio).</h2>
+
+<p>Riportiamo, come esempio, i testi più adottati in alcune delle principali università italiane. 
+  L'ultima colonna riporta il conteggio delle numero di adozioni registrate. I dati sono riordinabili ed esportabili in csv.</p>
+  
+
+
+<div id='mydata' class="container">
+
+
+
+     <table id="datatable" class="cell-border compact stripe nowrap hover" style="width:100%">
+       <thead class="thead-dark" style="background-color: #070707; color: rgb(244, 244, 252); text-align:center;">
+        <tr>    
+        <th>ISBN</th><th>Titolo</th><th>Editore</th><th>Punteggio</th> 
+         </tr></thead>
+         
+    
+     </table>
+
+</div>
+
+
+
+
+<div class="b-example-divider"></div>
+
+<script language="javascript">
+var titles = [
+['9788829929337','Chimica generale. Principi ed applicazioni moderne','Piccin Editore',2168],
+['9788808320971','Principi di chimica. Con e-book','Zanichelli',2077],
+['9788838695391','Chimica. La natura molecolare della materia e delle sue trasformazioni. Con Connect','McGraw-Hill Education',1965],
+['9783662517581','Scientific Computing with MATLAB and Octave','Springer',1962],
+['9788867890095','Lezioni di analisi matematica 1','Celid',1910],
+['9788879924283','Analisi matematica 1. Appunti delle lezioni','CLUT',1910],
+['9780980232776','Introduction to Linear Algebra','Wellesley-Cambridge Press',1902],
+['9788879922654','Metodi e algoritmi per il calcolo numerico','CLUT',1891],
+['9788879922128','Laboratorio di calcolo numerico. Esercizi di calcolo numerico risolti con Matlab','CLUT',1869],
+['9788847009226','Analisi matematica 1. Teoria ed esercizi con complementi in rete','Springer',1779],
+['9788840813479','Fondamenti di chimica. Con esercizi','Cea',1773],
+['9788838786075','Algebra lineare','Apogeo Maggioli',1769],
+['9788879599597','Fondamenti di chimica. Con contenuto digitale fornito elettronicamente','Edises',1766],
+['9788879595049','Elementi di stechiometria','Edises',1751],
+['9788882180348','Lezioni di geometria vol.2. Geometria analitica','Levrotto e Bella',1748],
+['9788874885893','Allenamenti di geometria. Esercizi e giochi di algebra lineare e geometria','Esculapio',1743],
+['9788813211509','Fondamenti di chimica per ingegneria','Wolters Kluwer – Cedam',1672],
+['9788808480057',"Principi fondamentali dell'assistenza infermieristica. (Volume unico)",'Cea',1671],
+['9788808187840','Brunner-Suddarth. Infermieristica medico-chirurgica vol.1','Cea',1567],
+['9788879591379','Fisica vol.1. Meccanica e termodinamica','EdiSes',1514],
+['9788833190259','Anatomia umana','Edises',1371],
+['9788891635433','Concetti di informatica e fondamenti di Python','Apogeo Maggioli',1335],
+['9788808580030','Diagnosi infermieristiche. Applicazione alla pratica clinica','Zanichelli',1124],
+['9788808187901','Brunner-Suddarth. Infermieristica medico-chirurgica vol.2','Cea',1121]
+];
+
+$(document).ready(function () {
+var renderer = $.fn.dataTable.render.number( ",", ".", 0 ).display;
+var events = $('#events');
+
+var table = $('#datatable').DataTable({
+  data: titles,
+  select: true,
+  dom: 'Bfrtip',
+  buttons: [
+      {extend: 'selectAll',
+        text: 'Seleziona tutto'},
+      {extend: 'selectNone',
+        text: 'Cancella la selezione'},
+      {extend: 'selectRows',
+        text: 'Seleziona righe'},
+      {
+        extend: 'csv',
+        text: 'Esporta come CSV',
+        title: 'classifica_almalibri',
+        exportOptions: {
+            modifier: {
+              search: 'none'
+          }
+      }
+      },
+  ],
+  language: {
+      url: "{% static 'js/it-IT.json' %}"
+  },
+  columnDefs: [
+  {
+      targets: '_all',
+      className: 'dt-left'
+  }
+  ],
+
+  order: [[1, 'des']]
+});  
+});
+</script>
+
+<div class="py-5 row">
+  
+<nav aria-label="Leggi di più">
+  <ul class="pagination justify-content-end">
+    
+    <li class="page-item"><a class="page-link" href="{% url 'page' 'introduzione' %}">Leggi di più</a></li>
+    <li class="page-item">
+      <a class="page-link" href="{% url 'page' 'introduzione' %}" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+</div>
+</div>
+{% endblock %}
+
