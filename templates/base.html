@@ -72,15 +72,16 @@
               <li class="p-3 pb-0 text-muted">
                 Per iniziare (in excel)</li>
               <li><a class="dropdown-item" href="{% url 'page' 'introduzione'%}">Introduzione</a> 
-              <ul>
-                <li><a class="dropdown-item" href="{% url 'page' 'elenco_adozioni'%}">Elenco adozioni</a></li>
-                <li><a class="dropdown-item" href="{% url 'page' 'caratteristiche_editoriali'%}">Quali libri</a></li>
-                <li><a class="dropdown-item" href="{% url 'page' 'count_of_insegnamenti'%}">Gli insegnamenti</a></li>
-                <li><a class="dropdown-item" href="{% url 'page' 'numero_studenti'%}">Gli studenti</a></li>
-                <li><a class="dropdown-item" href="{% url 'page' 'elenco_docenti'%}">I docenti</a></li>
-                <li><a class="dropdown-item" href="{% url 'page' 'distribuzione'%}">Le vendite</a></li>
-              </ul>
+                <ol>
+                  <li><a class="list-group-item" href="{% url 'page' 'elenco_adozioni'%}">Elenco adozioni</a></li>
+                  <li><a class="list-group-item" href="{% url 'page' 'caratteristiche_editoriali'%}">Quali libri</a></li>
+                  <li><a class="list-group-item" href="{% url 'page' 'count_of_insegnamenti'%}">Gli insegnamenti</a></li>
+                  <li><a class="list-group-item" href="{% url 'page' 'numero_studenti'%}">Gli studenti</a></li>
+                  <li><a class="list-group-item" href="{% url 'page' 'elenco_docenti'%}">I docenti</a></li>
+                  <li><a class="list-group-item" href="{% url 'page' 'distribuzione'%}">Le vendite</a></li>
+                </ol>
               </li>
+              <li ><hr class="dropdown-divider" ></li>
               <li class="p-3 pb-0 text-muted">Per chi preferisce python</li>
               <li><a class="dropdown-item" href="{% url 'page' 'tutorial_elenco_insegnamenti'%}">Adozioni e vendite</a></li>
               <li><a class="dropdown-item" href="{% url 'page' 'mercato' %}">Stima numero studenti</a></li>

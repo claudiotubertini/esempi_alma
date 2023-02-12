@@ -81,7 +81,7 @@ WSGI_APPLICATION = 'esempi_alma.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 DEVELOPMENT_MODE = os.getenv("DEVELOPMENT_MODE", "False") == "True"
-
+DEVELOPMENT_MODE = True
 
 # DATABASES = {
 #     'default': {
