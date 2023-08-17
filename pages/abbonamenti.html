@@ -1,0 +1,244 @@
+{% load static %}
+{% block content %}
+<style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+
+      .b-example-divider {
+        width: 100%;
+        height: 3rem;
+        background-color: rgba(0, 0, 0, .1);
+        border: solid rgba(0, 0, 0, .15);
+        border-width: 1px 0;
+        box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+      }
+
+      .b-example-vr {
+        flex-shrink: 0;
+        width: 1.5rem;
+        height: 100vh;
+      }
+
+      .bi {
+        vertical-align: -.125em;
+        fill: currentColor;
+      }
+
+      .nav-scroller {
+        position: relative;
+        z-index: 2;
+        height: 2.75rem;
+        overflow-y: hidden;
+      }
+
+      .nav-scroller .nav {
+        display: flex;
+        flex-wrap: nowrap;
+        padding-bottom: 1rem;
+        margin-top: -1px;
+        overflow-x: auto;
+        text-align: center;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .btn-bd-primary {
+        --bd-violet-bg: #712cf9;
+        --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
+
+        --bs-btn-font-weight: 600;
+        --bs-btn-color: var(--bs-white);
+        --bs-btn-bg: var(--bd-violet-bg);
+        --bs-btn-border-color: var(--bd-violet-bg);
+        --bs-btn-hover-color: var(--bs-white);
+        --bs-btn-hover-bg: #6528e0;
+        --bs-btn-hover-border-color: #6528e0;
+        --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
+        --bs-btn-active-color: var(--bs-btn-hover-color);
+        --bs-btn-active-bg: #5a23c8;
+        --bs-btn-active-border-color: #5a23c8;
+      }
+      .bd-mode-toggle {
+        z-index: 1500;
+      }
+    </style>
+
+   <div class="container">
+
+    <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+      <h1 class="display-4 fw-normal text-body-emphasis">Abbonamenti</h1>
+      <p class="fs-5 text-body-secondary">La consultazione della banca dati Almalibri può essere effettuata sia attraverso 
+        un'interfaccia web, questo sito, <br />sia attraverso
+      l'interfaccia API destinata alle applicazioni degli utenti.</p>
+    </div>
+
+    <div class="row mb-3 text-center">
+      <div class="col">
+        <div class="card mb-4 rounded-3 shadow-sm border-primary">
+          <div class="card-header py-3 border-primary">
+            <h4 class="my-0 fw-normal">Annuale web</h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title">€2000<small class="text-body-secondary fw-light">/anno</small></h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>Con anno si intende l'anno accademico</li>
+              <li>Piccole Aziende </li>
+              <li>1 solo utente</li>
+              <li>Tutti i dati disponibili</li>
+              <li>Aggiornamenti semestrali</li>
+              <li>Assistenza illimitata nella consultazione</li>
+            </ul>
+            
+            <button type="button" class="w-100 btn btn-lg btn-outline-primary email-link">Contattaci</button>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card mb-4 rounded-3 shadow-sm">
+          <div class="card-header py-3">
+            <h4 class="my-0 fw-normal">Annuale web</h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title">€3500<small class="text-body-secondary fw-light">/anno</small></h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>Con anno si intende l'anno accademico</li>
+              <li>1 utente incluso</li>
+              <li>€500 ogni utente aggiuntivo</li>
+              <li>Tutti i dati disponibili</li>
+              <li>Aggiornamenti semestrali</li>
+              <li>Assistenza illimitata nella consultazione</li>
+            </ul>
+            <button type="button" class="w-100 btn btn-lg btn-outline-primary email-link">Contattaci</button>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card mb-4 rounded-3 shadow-sm border-warning">
+          <div class="card-header py-3 text-bg-primary border-warning">
+            <h4 class="my-0 fw-normal">Biennale web</h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title">€3000<small class="text-body-secondary fw-light">/anno</small></h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>Con anno si intende l'anno accademico</li>
+              <li>1 utente incluso</li>
+              <li>€500 ogni utente aggiuntivo</li>
+              <li>Tutti i dati disponibili</li>
+              <li>Aggiornamenti semestrali</li>
+              <li>Assistenza illimitata nella consultazione</li>
+            </ul>
+            <button type="button" class="w-100 btn btn-lg btn-outline-primary email-link">Contattaci</button>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card mb-4 rounded-3 shadow-sm border-warning">
+          <div class="card-header py-3 text-bg-primary border-warning">
+            <h4 class="my-0 fw-normal">Annuale API/API 2</h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title">€1500<small class="text-body-secondary fw-light">/anno</small></h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>Con anno si intende l'anno accademico</li>
+              <li>Questo abbonamento è sottoscrivibile solo insieme a un abbonamento web</li>
+              <li>Accesso con riconoscimento dell'IP</li>
+              <li>Assistenza illimitata nella consultazione</li>
+            </ul>
+            <!-- <button type="button" class="w-100 btn btn-lg btn-outline-primary email-link" 
+            data-type="contatti_info" data-url="{% url 'ajax_get_email' %}">Contattaci</button> -->
+            <button type="button" class="w-100 btn btn-lg btn-outline-primary email-link">Contattaci</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="display-6 text-center mb-4">Caratteristiche degli abbonamenti</h2>
+    <p class="fs-5 text-body-secondary">L'abbonamento WEB consente la consultazione, attraverso il sito <a href="https://almalibri.it">Almalibri.it</a>, e il download dei dati
+      eventualmente selezionati. L'abbonamento API consente l'accesso costante ai dati consolidati, aggiornati semestralmente.
+       L'abbonamento API 2 accede invece ai dati in costante aggiornamento, dati che diventeranno accessibili ai diversi abbonamenti solo alla
+       fine del semestre. </p>
+
+    <div class="table-responsive">
+      <table class="table text-center">
+        <thead>
+          <tr>
+            <th style="width: 24%;"></th>
+            <th style="width: 19%;">Piccole Aziende</th>
+            <th style="width: 19%;">Web</th>
+            <th style="width: 19%;">API</th>
+            <th style="width: 19%;">API 2</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row" class="text-start">Aggiornamento semestrale</th>
+            <td><i class="fa fa-check" aria-hidden="true"></i></td>
+            <td><i class="fa fa-check" aria-hidden="true"></i></td>
+            <td><i class="fa fa-check" aria-hidden="true"></i></td>
+            <td><i class="fa fa-check" aria-hidden="true"></i></td>
+          </tr>
+          <tr>
+            <th scope="row" class="text-start">Aggiornamento costante</th>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><i class="fa fa-check" aria-hidden="true"></i></td>
+          </tr>
+        </tbody>
+
+        <tbody>
+          <tr>
+            <th scope="row" class="text-start">Numero utenti illimitato</th>
+            <td>Uno solo incluso</td>
+            <td>A pagamento</td>
+            <td><i class="fa fa-check" aria-hidden="true"></i></td>
+            <td><i class="fa fa-check" aria-hidden="true"></i></td>
+          </tr>
+          
+          <tr>
+            <th scope="row" class="text-start">Download dei dati delle principali università</th>
+            <td><i class="fa fa-check" aria-hidden="true"></i></td>
+            <td><i class="fa fa-check" aria-hidden="true"></i></td>
+            <td><i class="fa fa-check" aria-hidden="true"></i></td>
+            <td><i class="fa fa-check" aria-hidden="true"></i></td>
+          </tr>
+         
+        </tbody>
+      </table>
+      <p class="fs-5 text-body-secondary">I dati di Almalibri sono destinati esclusivamente all'uso interno dell'azienda che sottoscrive l'abbonamento. 
+        Per un eventuale riutilizzo, ad esempio una libreria online che presenti ai propri utenti dati tratti da Almalibri, è necessario sottoscrivere
+        un apposito contratto. Contattateci per maggiori informazioni.</p>
+
+      </p>
+    </div>
+
+</div>
+<script src="{% static 'js/jquery-3.7.0.min.js' %}"></script>
+  <!-- <script>
+    $('.email-link').on('click', function (event) {
+      event.preventDefault();
+      var type =  $(this).attr("data-type");
+      var url = $(this).attr("data-url");
+      $.ajax({
+        type: "GET",
+        url: url,
+        datatype: 'json',
+        data: {'type': type},
+        success: function (data) {
+          window.location = 'mailto:' + data.mail + '?subject=' + data.subject;
+        }
+      });
+    });
+  </script> -->
+{% endblock %}
