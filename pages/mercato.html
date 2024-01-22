@@ -486,6 +486,19 @@
     </div>
 </div>
 </div>
+<div class="row">
+  <div class="col-2">
+    
+  </div>
+<div class="col-8">
+    <div class="chart_container" style="width: 600;">
+        <canvas id="chart_c"></canvas>
+    </div>
+  </div>
+  <div class="col-2">
+    
+  </div>
+</div>
 
 <script type="text/javascript">
   
@@ -519,7 +532,7 @@ new Chart(
              ["Medico-Sanitario", "e Farmaceutico"], ["Politico-Sociale", "e Comunicazione"],
              "Psicologico", "Scientifico", "Scienze motorie e sportive"],
           datasets: [{
-              label: "Media iscritti per Laurea",
+              label: "Media iscritti al I anno",
               borderColor: '#36A2EB',
               //backgroundColor: '#9BD0F5',
               backgroundColor: 'rgb(54, 162, 235)',
@@ -571,6 +584,8 @@ new Chart(
       }
 });
 })();
+
+
 (async function() {
     const data3 = [
       {"mean":112,"sum":448,"isbn":306,"fatturato":3597748},
@@ -590,7 +605,7 @@ new Chart(
              "Letterario-Umanistico", 
              ["Medico-Sanitario", "e Farmaceutico"]],
           datasets: [{
-              label: "Media iscritti per Laurea",
+              label: "Media iscritti al I anno",
               borderColor: '#36A2EB',
               backgroundColor: 'rgb(54, 162, 235)',
               maxBarThickness: 30,
@@ -637,6 +652,90 @@ new Chart(
       }
 });
 })();
+
+(async function() {
+    const data4 = [
+      {"mean":53,"sum":2115,"isbn":772,"fatturato":3787328},
+      {"mean":114,"sum":6472,"isbn":2392,"fatturato":24383372},
+      {"mean":95,"sum":4259,"isbn":1814,"fatturato":10822673},
+      {"mean":146,"sum":17691,"isbn":2326,"fatturato":44676414},
+      {"mean":59,"sum":296,"isbn":102,"fatturato":403357},
+      {"mean":85,"sum":2040,"isbn":281,"fatturato":2235368},
+      {"mean":145,"sum":22670,"isbn":2832,"fatturato":74052669},
+      {"mean":106,"sum":3192,"isbn":947,"fatturato":2968612},
+      {"mean":81,"sum":7033,"isbn":5752,"fatturato":39806038},
+      {"mean":142,"sum":6407,"isbn":3988,"fatturato":28727108},
+      {"mean":65,"sum":4318,"isbn":1226,"fatturato":3902191},
+      {"mean":94,"sum":10660,"isbn":3864,"fatturato":19618088},
+      {"mean":108,"sum":5520,"isbn":1157,"fatturato":5947987},
+      {"mean":62,"sum":13282,"isbn":3805,"fatturato":34649625},
+      {"mean":91,"sum":817,"isbn":191,"fatturato":1024061}];
+new Chart(
+    document.getElementById('chart_c'),
+    {
+      type: 'bar',
+      data: {
+          labels: [["Agrario-Forestale", "e Veterinario"], ["Architettura", "e Ingegneria civile"],
+             "Arte e Design", "Economico", "Giuridico",
+             ["Informatica", "e Tecnologie ICT"],
+             ["Ingegneria industriale", "e dell'informazione"], "Insegnamento",
+             "Letterario-Umanistico", "Linguistico",
+             ["Medico-Sanitario", "e Farmaceutico"], ["Politico-Sociale", "e Comunicazione"],
+             "Psicologico", "Scientifico", "Scienze motorie e sportive"],
+          datasets: [{
+              label: "Media iscritti al I anno",
+              borderColor: '#36A2EB',
+              //backgroundColor: '#9BD0F5',
+              backgroundColor: 'rgb(54, 162, 235)',
+              maxBarThickness: 30,
+              data: data4.map(row => row.mean)
+              },
+              {
+              label: "Numero titoli adottati",
+              borderColor: '#FF6384',
+              //backgroundColor: '#FFB1C1',
+              backgroundColor: 'rgb(255, 99, 132)',
+              //rgb(255, 99, 132)',
+              //'rgb(54, 162, 235)',
+              //'rgb(255, 205, 86)'
+              data: data4.map(row => row.isbn)
+              }],
+          grouped:true
+        },
+      options: {
+        aspectRatio: 1.5,
+        plugins: {
+          legend: {
+            display: true
+          },
+          tooltip: {
+            enabled: true
+          },
+          title: {
+            display: true,
+            text: 'Lauree Magistrali',
+            font: {
+                        size: 18
+                    }
+          },
+          responsive: true,
+           interaction: {
+            intersect: true,
+            },
+          scales: {
+            xAxes: [{ stacked: true }],
+            yAxes: [{
+              stacked: false,
+              ticks: {
+                minRotation: 90
+              },
+            }]
+          },
+        }
+      }
+});
+})();
+
 </script>
     </main>
   </div>
