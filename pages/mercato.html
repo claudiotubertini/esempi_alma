@@ -1,14 +1,6 @@
 {% load static %}
-
-
-
 {% block content %}
 
-<style>
-.currency:before{ content:'€ '; }
-.currency:after{ content: '.00'; }
-</style>
-<script type="module" src="{% static 'js/number-format.js' %}"></script>
 <div class="container">
   <div class="row">
     
@@ -389,10 +381,11 @@
     </div>
       <div class="row">
         <h2>Fatturato complessivo</h2>
-     <div class="my-4 w-100" style="width:900, height=400;">  <canvas  id="fatturato" aria-label="Hello ARIA World" role="img">
+     <div class="my-4 w-100" style="width:900, height=400;">  <canvas  id="fatturato" role="img">
         <p>Grafico a barre del fatturato complessivo delle lauree triennali, magistrali e a ciclo unico.</p>
-      </canvas></div>
-
+      </canvas>
+    </div>
+</div>
       <script type="text/javascript" > 
 (async function() {
 const data2022 =[
@@ -441,7 +434,6 @@ const data2022 =[
  27436277,
  191041856,
  14152838];
-  
 
   new Chart(
     document.getElementById('fatturato'),
@@ -513,7 +505,8 @@ const data2022 =[
       }
       });
 })();
-      </script></div>
+      </script>
+      
       
 <div class="row">
  
@@ -811,16 +804,12 @@ new Chart(
     {x:'2021/22',y:552004.0},
     {x:'2022/23',y:568450.0}
       ];
-    const dataiscritti2 = [
-    452218.0, 442416.0, 428647.0, 429393.0, 431761.0, 431418.0, 456425.0, 470969.0, 489487.0, 522922.0, 570105.0, 552004.0, 568450.0
-    ];
-//const labels = ['2010','2011','2012','2013','2014','2015','2016','2017','2018','2019']
 var chart = new Chart(document.getElementById('iscritti'), {
   type: 'line',
   data: {
     datasets: [{
       data: dataiscritti,
-      label: 'Iscritti I anno complessivi',
+      label: 'Iscritti I anno',
       borderColor: "#ff0066",
       backgroundColor: "#ff0066",
       pointRadius: 10
@@ -842,29 +831,10 @@ var chart = new Chart(document.getElementById('iscritti'), {
                         size: 18
                     }
           },
-          responsive: true,
-          scales: {
-            xAxes: [{
-             fontSize: 20,
-              scaleLabel: {
-                display: true,
-                labelString: 'Date'
-              }
-            }],
-                yAxes: {
-                  title: {
-                    display: true,
-                    text: 'Studenti'
-                  },
-                  min: 400000,
-                   max: 600000,
-                }
-              }
+          responsive: true
           
   }}});
   })();
 </script>
     </main>
-  </div>
-</div>
 {% endblock %}
