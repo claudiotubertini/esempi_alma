@@ -4,7 +4,11 @@
 
 {% block content %}
 
-
+<style>
+.currency:before{ content:'€ '; }
+.currency:after{ content: '.00'; }
+</style>
+<script type="module" src="{% static 'js/number-format.js' %}"></script>
 <div class="container">
   <div class="row">
     
@@ -13,30 +17,46 @@
       <div class=" justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">Il mercato dei libri di testo universitari</h1>
        <p>I dati qui utilizzati sono scaricabili da questa 
-        <a href="https://github.com/claudiotubertini/almalibri" target="_blank">pagina</a> dove si trovano i file con le adozioni di 24 università, le stesse utilizzate da <a href="https://www.aie.it/" target="_blank">AIE</a> nell'analisi del mercato universitario 2022. Gli abbonati ad Almalibri possono naturalmente accedere direttamente al database. Passeremo in rassegna alcuni dati significativi ed effettueremo una stima del mercato universitario a prezzi di copertina confrontando gli anni accademici 2020/21 e 2021/22. Il fatturato a prezzo di copertina è ampiamanete superiore a quello effettivamente misurato dagli editori, fatturato che risente tra le altre cose delle fotocopie pirata e del mercato dell'usato. Rimandiamo allo studio di AIE per un'analisi approfondita dei ricavi delle case editrici.  
+        <a href="https://github.com/claudiotubertini/almalibri" target="_blank">pagina</a> dove si trovano i file con le adozioni 
+        di 24 università, le stesse utilizzate da <a href="https://www.aie.it/" target="_blank">AIE</a> nell'analisi del mercato 
+        universitario. Gli abbonati ad Almalibri possono naturalmente accedere direttamente al database. 
+        Passeremo in rassegna alcuni dati significativi ed effettueremo una stima del mercato universitario a prezzi 
+        di copertina confrontando gli anni accademici 2020/21, 2021/22 e 2022/23. Qui, per semplicità, consideriamo solo i testi obbligatori,
+         così come ha fatto AIE, ma circa il 40% di tutti i volumi presenti nelle bibliografie sono solo consigliati. 
+         Il fatturato a prezzo di copertina è 
+        ampiamente superiore a quello effettivamente misurato dagli editori, fatturato che risente tra le altre cose delle 
+        fotocopie pirata e del mercato dell'usato. Rimandiamo allo studio di AIE per un'analisi approfondita dei ricavi delle case editrici.  
       </p>
       </div>
 <div>
-  <p>La nostra analisi si trova nella <a href="https://github.com/claudiotubertini/almalibri/blob/main/mercato_newsletter.ipynb" target="_blank"> pagina github</a>. Qui descriveremo solo i passaggi logici che potranno essere implementati nel modo e con gli strumenti informatici preferiti dal lettore.</p>
-  <p>1. Scarichiamo i dati da <a href="https://github.com/claudiotubertini/almalibri" target="_blank">github</a> e creiamo un unico dataframe. L'ultimo dato disponibile degli iscritti (al momento in cui scriviamo, gennaio 2024) è l'anno accademico 2021/22, quindi consideriamo le adozioni di quell'anno accademico e lo stesso per l'anno accademico precedente, il 2020/21</p>
+  <p>La nostra analisi si trova in questa <a href="https://github.com/claudiotubertini/almalibri/blob/main/mercato_newsletter.ipynb" target="_blank"> pagina github</a>. 
+    Qui descriveremo solo i passaggi logici che potranno essere implementati nel modo e con gli strumenti preferiti dal lettore.</p>
+  <p>1. Scarichiamo i dati da <a href="https://github.com/claudiotubertini/almalibri" target="_blank">github</a> e creiamo un unico 
+    dataframe. Gli ultimi dati disponibili degli iscritti sono relativi all'anno accademico 2022/23. Nella pagina pubblica di github compaiono solo i 
+    dati del 2020/21 e 2021/22.</p>
   <p>2. Suddividiamo i dati nelle lauree triennali, magistrali e a ciclo unico selezionando solo i volumi adottati obbligatori.</p>
-  <p>3. Per raggruppare i corsi di laurea, e quindi le adozioni e gli studenti, in aree disciplinari distinte, scarichiamo dal sito del MUR il file dedicato alle <a href="https://dati-ustat.mur.gov.it/dataset/metadati/resource/6755c8e6-dfa0-4605-a401-674a7b431edb" target="_blank">classi di laurea</a>, ma che trovate anche sulla nostra pagina github con il nome <a href="https://raw.githubusercontent.com/claudiotubertini/almalibri/main/classi_di_laurea.csv" target="_blank"><code>classi_di_laurea.csv</code></a>. Lo uniamo alle adozioni usando la colonna che riporta le classi di laurea.</p>
-  <p>4. I dati disponibili sul numero di studenti sono il totale degli iscritti al corso di laurea e gli iscritti al primo anno, sempre di ogni corso di laurea. A noi interessano solo questi ultimi. Sono questi gli studenti che compreranno copia dei volumi adottati e che eventualmente li riutilizzeranno in più insegnamenti e/o in più anni. Tralasciamo in questa sede il ruolo delle fotocopie, delle copie usate e dei materiali digitali alternativi che riducono drasticamente il numero di copie vendute. Raggruppiamo le adozioni per università, anno e corso di laurea, in modo da avere per ogni corso di laurea, di cui conosciamo il numero di studenti del primo anno, un unico record per ogni isbn (un solo isbn per ogni corso di laurea, ripetuto per ogni corso di laurea dove viene adottato). A questo punto sommiamo il numero di studenti per tutti i corsi di laurea che usano quell'isbn e otteniamo una stima del mercato per quel titolo. Il campione di università copre un po' meno della metà di tutti gli studenti e quindi il valore trovato è circa la metà di quello nazionale, il 49% per essere precisi. </p>
+  <p>3. Per raggruppare i corsi di laurea, e quindi le adozioni e gli studenti, in aree disciplinari distinte, scarichiamo dal sito 
+    del MUR il file dedicato alle <a href="https://dati-ustat.mur.gov.it/dataset/metadati/resource/6755c8e6-dfa0-4605-a401-674a7b431edb" target="_blank">classi di laurea</a>, 
+    ma che trovate anche sulla nostra pagina github con il nome <a href="https://raw.githubusercontent.com/claudiotubertini/almalibri/main/classi_di_laurea.csv" target="_blank"><code>classi_di_laurea.csv</code></a>. 
+    Lo uniamo alle adozioni usando la colonna che riporta le classi di laurea.</p>
+  <p>4. I dati disponibili sul numero di studenti sono il totale degli iscritti al corso di laurea e gli iscritti al primo anno, sempre di ogni corso di laurea. A noi interessano solo questi ultimi. Sono questi gli studenti che compreranno copia dei volumi adottati e che eventualmente li riutilizzeranno in più insegnamenti e/o in più anni. Tralasciamo in questa sede il ruolo delle fotocopie, delle copie usate e dei materiali digitali alternativi che riducono drasticamente il numero di copie vendute. Raggruppiamo le adozioni per università, anno e corso di laurea, in modo da avere per ogni corso di laurea, di cui conosciamo il numero di studenti del primo anno, un unico record per ogni isbn (un solo isbn per ogni corso di laurea, ripetuto per ogni corso di laurea dove viene adottato). A questo punto sommiamo il numero di studenti per tutti i corsi di laurea che usano quell'isbn e otteniamo una stima del mercato per quel titolo. Il campione di università copre un po' meno della metà di tutti gli studenti e quindi il valore trovato è circa la metà di quello nazionale. </p>
   <p>5. Le colonne nelle tabelle che seguono sono: l'area disciplinare, la media degli iscritti al primo anno delle lauree appartenenti a quell'area, il totale degli iscritti al primo anno ai corsi dell'area (si tenga presente, lo ripetiamo, che questo valore è circa il 49% di quello nazionale), il numero di volumi adottati nell'area (anche qui il 49% del totale) e infine il fatturato, ovvero il prodotto del prezzo di copertina di ciascun isbn per il numero di studenti che utilizzano quel volume. Si assume che tutti gli studenti comperino tutti i volumi adottati (obbligatori). Va notato che il prezzo di copertina non è sempre presente, quindi il valore del fatturato è sicuramente sottostimato. Per gli editori internazionali la mancanza dei prezzi è quasi sistematica.</p>
-<p>6. Il risultato è comunque interessante perché dà un'idea della dimensione del mercato calcolata su un elenco di volumi effettivamente adottati. In assenza dei dati Almalibri, si è sempre valutato questo numero solo sulla base della stima dei volumi venduti che avessero l'aspetto e i contenuti di testi universitari. In questo modo si mischiavano vendite universitarie a vendite a professionisti e a vendite di varia ottenendo un dato sicuramente spurio.</p>
+<p>6. Il risultato è comunque interessante perché dà un'idea della dimensione del mercato calcolata su un elenco di volumi 
+  effettivamente adottati. In assenza dei dati Almalibri, si è spesso valutato questo numero solo sulla base della stima dei volumi venduti che avessero l'aspetto e i contenuti di testi universitari. In questo modo si mischiavano vendite universitarie a vendite a professionisti e a vendite di varia ottenendo un dato sicuramente spurio.</p>
 </div></main>
      </div>
 <div class="row">
-      <h2>Lauree Triennali</h2>
+      <h2>Lauree Triennali (dati campione 2021)</h2>
+      <!-- <number-format number="1234565.2136" currency="EUR"></number-format> -->
       <div class="table-responsive small">
         <table class="table table-striped table-sm">
           <thead>
     <tr style="text-align: left;">
       <th>id</th>
       <th>area</th>
-      <th>media iscritti lauree</th>
+      <th>media iscritti I anno</th>
       <th>totale iscritti area</th>
-      <th>isbn</th>
+      <th>titoli adottati</th>
       <th style="text-align: right;">fatturato</th>
     </tr>
   </thead>
@@ -47,7 +67,7 @@
       <td>106</td>
       <td>5313</td>
       <td>748</td>
-      <td style="text-align: right;">6 510 652</td>
+      <td  style="text-align: right;"><number-format number="6510652" locale="it-IT" currency="EUR"></number-format></td>
     </tr>
     <tr>
       <th>1</th>
@@ -55,7 +75,7 @@
       <td>119</td>
       <td>6063</td>
       <td>1935</td>
-      <td style="text-align: right;">32 114 077</td>
+      <td  style="text-align: right;"><number-format number="32114077" locale="it-IT" currency="EUR"></number-format></td>
     </tr>
     <tr>
       <th>2</th>
@@ -63,7 +83,7 @@
       <td>278</td>
       <td>12235</td>
       <td>2335</td>
-      <td style="text-align: right;">29 800 328</td>
+      <td style="text-align: right;"><number-format number="29800328" locale="it-IT" currency="EUR"></number-format></td>
     </tr>
     <tr>
       <th>3</th>
@@ -71,7 +91,7 @@
       <td>457</td>
       <td>39294</td>
       <td>1832</td>
-      <td style="text-align: right;">65 934 927</td>
+      <td style="text-align: right;"><number-format number="65934927" locale="it-IT" currency="EUR"></number-format></td>
     </tr>
     <tr>
       <th>4</th>
@@ -79,7 +99,7 @@
       <td>180</td>
       <td>4681</td>
       <td>601</td>
-      <td style="text-align: right;">6 083 488</td>
+      <td style="text-align: right;"><number-format number="6083488" locale="it-IT" currency="EUR"></number-format></td>
     </tr>
     <tr>
       <th>5</th>
@@ -87,7 +107,7 @@
       <td>388</td>
       <td>8155</td>
       <td>291</td>
-      <td style="text-align: right;">9 343 076</td>
+      <td style="text-align: right;"><number-format number="9343076" locale="it-IT" currency="EUR"></number-format></td>
     </tr>
     <tr>
       <th>6</th>
@@ -95,7 +115,7 @@
       <td>321</td>
       <td>37855</td>
       <td>1863</td>
-      <td style="text-align: right;">79 809 891</td>
+      <td style="text-align: right;"><number-format number="79809891" locale="it-IT" currency="EUR"></number-format></td>
     </tr>
     <tr>
       <th>7</th>
@@ -103,7 +123,7 @@
       <td>513</td>
       <td>11293</td>
       <td>1300</td>
-      <td style="text-align: right;">13 346 137</td>
+      <td style="text-align: right;"><number-format number="13346137" locale="it-IT" currency="EUR"></number-format></td>
     </tr>
     <tr>
       <th>8</th>
@@ -111,7 +131,7 @@
       <td>260</td>
       <td>13494</td>
       <td>3800</td>
-      <td style="text-align: right;">58 356 075</td>
+      <td style="text-align: right;"><number-format number="58356075" locale="it-IT" currency="EUR"></number-format></td>
     </tr>
     <tr>
       <th>9</th>
@@ -119,7 +139,7 @@
       <td>368</td>
       <td>11400</td>
       <td>3701</td>
-      <td style="text-align: right;">59 016 093</td>
+      <td style="text-align: right;"><number-format number="59016093" locale="it-IT" currency="EUR"></number-format></td>
     </tr>
     <tr>
       <th>10</th>
@@ -127,7 +147,7 @@
       <td>78</td>
       <td>18190</td>
       <td>4054</td>
-      <td style="text-align: right;">67 794 936</td>
+      <td style="text-align: right;"><number-format number="67794936" locale="it-IT" currency="EUR"></number-format></td>
     </tr>
     <tr>
       <th>11</th>
@@ -135,7 +155,7 @@
       <td>326</td>
       <td>23798</td>
       <td>2438</td>
-      <td style="text-align: right;">31 741 600</td>
+      <td style="text-align: right;"><number-format number="31741600" locale="it-IT" currency="EUR"></number-format></td>
     </tr>
     <tr>
       <th>12</th>
@@ -143,7 +163,7 @@
       <td>276</td>
       <td>4965</td>
       <td>509</td>
-      <td style="text-align: right;">76 57 419</td>
+      <td style="text-align: right;"><number-format number="7657419" locale="it-IT" currency="EUR"></number-format></td>
     </tr>
     <tr>
       <th>13</th>
@@ -151,7 +171,7 @@
       <td>141</td>
       <td>22184</td>
       <td>2720</td>
-      <td style="text-align: right;">52 383 397</td>
+      <td style="text-align: right;"><number-format number="52383397" locale="it-IT" currency="EUR"></number-format></td>
     </tr>
     <tr>
       <th>14</th>
@@ -159,21 +179,21 @@
       <td>451</td>
       <td>5863</td>
       <td>352</td>
-      <td style="text-align: right;">6 547 725</td>
+      <td style="text-align: right;"><number-format number="6547725" locale="it-IT" currency="EUR"></number-format></td>
     </tr>
   </tbody>
         </table>
       </div>
-<h2>Lauree Magistrali</h2>
+<h2>Lauree Magistrali (dati campione 2021)</h2>
       <div class="table-responsive small">
         <table class="table table-striped table-sm">
           <thead>
     <tr style="text-align: left;">
       <th>id</th>
       <th>area</th>
-      <th>media iscritti lauree</th>
+      <th>media iscritti I anno</th>
       <th>totale iscritti area</th>
-      <th>isbn</th>
+      <th>titoli adottati</th>
       <th style="text-align: right;">fatturato</th>
     </tr>
   </thead>
@@ -184,7 +204,7 @@
       <td>53</td>
       <td>2115</td>
       <td>772</td>
-      <td style="text-align: right;">3 787 328</td>
+      <td style="text-align: right;"><number-format number="3787328" locale="it-IT" currency="EUR"></number-format></td>
     </tr>
     <tr>
       <th>1</th>
@@ -192,7 +212,7 @@
       <td>114</td>
       <td>6472</td>
       <td>2392</td>
-      <td style="text-align: right;">24 383 372</td>
+      <td style="text-align: right;"><number-format number="24383372" locale="it-IT" currency="EUR"></number-format></td>
     </tr>
     <tr>
       <th>2</th>
@@ -200,7 +220,7 @@
       <td>95</td>
       <td>4259</td>
       <td>1814</td>
-      <td style="text-align: right;">10 822 673</td>
+      <td style="text-align: right;"><number-format number="10822673" locale="it-IT" currency="EUR"></number-format></td>
     </tr>
     <tr>
       <th>3</th>
@@ -208,7 +228,7 @@
       <td>146</td>
       <td>17691</td>
       <td>2326</td>
-      <td style="text-align: right;">44 676 414</td>
+      <td style="text-align: right;"><number-format number="44676414" locale="it-IT" currency="EUR"></number-format></td>
     </tr>
     <tr>
       <th>4</th>
@@ -216,7 +236,7 @@
       <td>59</td>
       <td>296</td>
       <td>102</td>
-      <td style="text-align: right;">403 357</td>
+      <td style="text-align: right;"><number-format number="403357" locale="it-IT" currency="EUR"></number-format></td>
     </tr>
     <tr>
       <th>5</th>
@@ -224,7 +244,7 @@
       <td>85</td>
       <td>2040</td>
       <td>281</td>
-      <td style="text-align: right;">2 235 368</td>
+      <td style="text-align: right;"><number-format number="2235368" locale="it-IT" currency="EUR"></number-format></td>
     </tr>
     <tr>
       <th>6</th>
@@ -232,7 +252,7 @@
       <td>145</td>
       <td>22670</td>
       <td>2832</td>
-      <td style="text-align: right;">74 052 669</td>
+      <td style="text-align: right;"><number-format number="74052669" locale="it-IT" currency="EUR"></number-format></td>
     </tr>
     <tr>
       <th>7</th>
@@ -240,7 +260,7 @@
       <td>106</td>
       <td>3192</td>
       <td>947</td>
-      <td style="text-align: right;">2 968 612</td>
+      <td style="text-align: right;"><number-format number="2968612" locale="it-IT" currency="EUR"></number-format></td>
     </tr>
     <tr>
       <th>8</th>
@@ -248,7 +268,7 @@
       <td>81</td>
       <td>7033</td>
       <td>5752</td>
-      <td style="text-align: right;">39 806 038</td>
+      <td style="text-align: right;"><number-format number="39806038" locale="it-IT" currency="EUR"></number-format></td>
     </tr>
     <tr>
       <th>9</th>
@@ -256,7 +276,7 @@
       <td>142</td>
       <td>6407</td>
       <td>3988</td>
-      <td style="text-align: right;">28 727 108</td>
+      <td style="text-align: right;"><number-format number="28727108" locale="it-IT" currency="EUR"></number-format></td>
     </tr>
     <tr>
       <th>10</th>
@@ -264,7 +284,7 @@
       <td>65</td>
       <td>4318</td>
       <td>1226</td>
-      <td style="text-align: right;">3 902 191</td>
+      <td style="text-align: right;"><number-format number="3902191" locale="it-IT" currency="EUR"></number-format></td>
     </tr>
     <tr>
       <th>11</th>
@@ -272,7 +292,7 @@
       <td>94</td>
       <td>10660</td>
       <td>3864</td>
-      <td style="text-align: right;">19 618 088</td>
+      <td style="text-align: right;">1<number-format number="9618088" locale="it-IT" currency="EUR"></number-format></td>
     </tr>
     <tr>
       <th>12</th>
@@ -280,7 +300,7 @@
       <td>108</td>
       <td>5520</td>
       <td>1157</td>
-      <td style="text-align: right;">5 947 987</td>
+      <td style="text-align: right;"><number-format number="5947987" locale="it-IT" currency="EUR"></number-format></td>
     </tr>
     <tr>
       <th>13</th>
@@ -288,7 +308,7 @@
       <td>62</td>
       <td>13282</td>
       <td>3805</td>
-      <td style="text-align: right;">34 649 625</td>
+      <td style="text-align: right;"><number-format number="34649625" locale="it-IT" currency="EUR"></number-format></td>
     </tr>
     <tr>
       <th>14</th>
@@ -296,21 +316,21 @@
       <td>91</td>
       <td>817</td>
       <td>191</td>
-      <td style="text-align: right;">1 024 061</td>
+      <td style="text-align: right;"><number-format number="1024061" locale="it-IT" currency="EUR"></number-format></td>
     </tr>
   </tbody>
         </table>
       </div>
-      <h2>Lauree a Ciclo Unico</h2>
+      <h2>Lauree a Ciclo Unico (dati campione 2021)</h2>
       <div class="table-responsive small">
         <table class="table table-striped table-sm">
           <thead>
     <tr style="text-align: left;">
       <th>id</th>
       <th>area</th>
-      <th>media iscritti lauree</th>
+      <th>media iscritti I anno</th>
       <th>totale iscritti area</th>
-      <th>isbn</th>
+      <th>titoli adottati</th>
       <th style="text-align: right;">fatturato</th>
     </tr>
   </thead>
@@ -321,7 +341,7 @@
       <td>112</td>
       <td>448</td>
       <td>306</td>
-      <td style="text-align: right;">3 597 748</td>
+      <td style="text-align: right;"><number-format number="3597748" locale="it-IT" currency="EUR"></number-format></td>
     </tr>
     <tr>
       <th>1</th>
@@ -329,7 +349,7 @@
       <td>126</td>
       <td>1515</td>
       <td>1378</td>
-      <td style="text-align: right;">9 629 054</td>
+      <td style="text-align: right;"><number-format number="9629054" locale="it-IT" currency="EUR"></number-format></td>
     </tr>
     <tr>
       <th>2</th>
@@ -337,7 +357,7 @@
       <td>445</td>
       <td>9788</td>
       <td>1920</td>
-      <td style="text-align: right;">57 145 318</td>
+      <td style="text-align: right;"><number-format number="57145318" locale="it-IT" currency="EUR"></number-format></td>
     </tr>
     <tr>
       <th>3</th>
@@ -345,7 +365,7 @@
       <td>247</td>
       <td>3707</td>
       <td>923</td>
-      <td style="text-align: right;">5 544 494</td>
+      <td style="text-align: right;"><number-format number="5544494" locale="it-IT" currency="EUR"></number-format></td>
     </tr>
     <tr>
       <th>4</th>
@@ -353,7 +373,7 @@
       <td>13</td>
       <td>26</td>
       <td>169</td>
-      <td style="text-align: right;">61 561</td>
+      <td style="text-align: right;"><number-format number="61561" locale="it-IT" currency="EUR"></number-format></td>
     </tr>
     <tr>
       <th>5</th>
@@ -361,7 +381,7 @@
       <td>199</td>
       <td>15135</td>
       <td>2246</td>
-      <td style="text-align: right;">98 627 123</td>
+      <td style="text-align: right;"><number-format number="98627123" locale="it-IT" currency="EUR"></number-format></td>
     </tr>
   </tbody>
         </table>
@@ -375,6 +395,22 @@
 
       <script type="text/javascript" > 
 (async function() {
+const data2022 =[
+26048826,
+127695577,
+89761440,
+214920485,
+141711008,
+30443271,
+309724654,
+49721788,
+195229762,
+175499680,
+375564372,
+115139735,
+30130111,
+198479668,
+25068788];
   const data2021 = [28347284,
  134898065,
  82870921,
@@ -419,6 +455,7 @@
        "Letterario-Umanistico", "Linguistico",
        ["Medico-Sanitario", "e Farmaceutico"], ["Politico-Sociale", "e Comunicazione"],
        "Psicologico", "Scientifico", "Scienze motorie e sportive"],
+       
         datasets: [
           {
             label: '2020',
@@ -432,6 +469,13 @@
             borderColor: '#FF6384',
             //backgroundColor: '#FFB1C1'
             backgroundColor: 'rgb(255, 205, 86)'
+          },
+          {
+            label: '2022',
+            data: data2022,
+            borderColor: '#FF6384',
+            //backgroundColor: '#FFB1C1'
+            backgroundColor: 'rgb(255, 50, 86)'
           }
         ],
       options: {
@@ -473,7 +517,7 @@
       
 <div class="row">
  
-    <h2>Numero di testi adottati per area disciplinare</h2>
+    <h2>Numero di testi adottati per area disciplinare (nel 2021)</h2>
 
      <div class="col">
     <div class="chart_container" style="width: 500;">
