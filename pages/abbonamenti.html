@@ -1,6 +1,7 @@
 {% load static %}
-{% block content %}
 {% load bootstrap_icons %}
+
+{% block content %}
 <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
@@ -80,7 +81,7 @@
     <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
       <h1 class="display-4 fw-normal text-body-emphasis">Abbonamenti</h1>
       <p class="fs-5 text-body-secondary">La consultazione della banca dati Almalibri può essere effettuata sia attraverso 
-        un'interfaccia web, il sito <a href="https://almalibri.it">Almalibri.it</a>, <br />sia attraverso
+        un'interfaccia web, questo sito, <br />sia attraverso
       l'interfaccia API destinata alle applicazioni degli utenti.</p>
     </div>
 
@@ -100,6 +101,8 @@
               <li>Aggiornamenti semestrali</li>
               <li>Assistenza illimitata nella consultazione</li>
             </ul>
+            
+            <button type="button" class="w-100 btn btn-lg btn-outline-primary email-link">Contattaci</button>
           </div>
         </div>
       </div>
@@ -118,7 +121,7 @@
               <li>Aggiornamenti semestrali</li>
               <li>Assistenza illimitata nella consultazione</li>
             </ul>
-            
+            <button type="button" class="w-100 btn btn-lg btn-outline-primary email-link">Contattaci</button>
           </div>
         </div>
       </div>
@@ -137,7 +140,7 @@
               <li>Aggiornamenti semestrali</li>
               <li>Assistenza illimitata nella consultazione</li>
             </ul>
-            
+            <button type="button" class="w-100 btn btn-lg btn-outline-primary email-link">Contattaci</button>
           </div>
         </div>
       </div>
@@ -154,8 +157,8 @@
               <li>Accesso con riconoscimento dell'IP</li>
               <li>Assistenza illimitata nella consultazione</li>
             </ul>
-           
             
+            <button type="button" class="w-100 btn btn-lg btn-outline-primary email-link">Contattaci</button>
           </div>
         </div>
       </div>
@@ -166,9 +169,6 @@
       eventualmente selezionati. L'abbonamento API consente l'accesso costante ai dati consolidati, aggiornati semestralmente.
        L'abbonamento API 2 accede invece ai dati in costante aggiornamento, dati che diventeranno accessibili ai diversi abbonamenti solo alla
        fine del semestre. </p>
-<p class="fs-5 text-body-secondary">Per assistenza e sviluppo di personalizzazioni, ad esempio l'inserimento dei dati nel gestionale o in particolari CRM,
-      è possibile sottoscrivere un abbonamento annuale a 1500 euro. Contattateci per maggiori informazioni.</p>
-      
 
     <div class="table-responsive">
       <table class="table text-center">
@@ -184,17 +184,17 @@
         <tbody>
           <tr>
             <th scope="row" class="text-start">Aggiornamento semestrale</th>
-            <td><i class="fa fa-check" aria-hidden="true"></i></td>
-            <td><i class="fa fa-check" aria-hidden="true"></i></td>
-            <td><i class="fa fa-check" aria-hidden="true"></i></td>
-            <td><i class="fa fa-check" aria-hidden="true"></i></td>
+            <td>{% bs_icon 'check' %}</td>
+            <td>{% bs_icon 'check' %}</td>
+            <td>{% bs_icon 'check' %}</td>
+            <td>{% bs_icon 'check' %}</td>
           </tr>
           <tr>
             <th scope="row" class="text-start">Aggiornamento costante</th>
             <td></td>
             <td></td>
             <td></td>
-            <td><i class="fa fa-check" aria-hidden="true"></i></td>
+            <td>{% bs_icon 'check' %}</td>
           </tr>
         </tbody>
 
@@ -203,16 +203,16 @@
             <th scope="row" class="text-start">Numero utenti illimitato</th>
             <td>Uno solo incluso</td>
             <td>A pagamento</td>
-            <td><i class="fa fa-check" aria-hidden="true"></i></td>
-            <td><i class="fa fa-check" aria-hidden="true"></i></td>
+            <td>{% bs_icon 'check' %}</td>
+            <td>{% bs_icon 'check' %}</td>
           </tr>
           
           <tr>
             <th scope="row" class="text-start">Download dei dati delle principali università</th>
-            <td><i class="fa fa-check" aria-hidden="true"></i></td>
-            <td><i class="fa fa-check" aria-hidden="true"></i></td>
-            <td><i class="fa fa-check" aria-hidden="true"></i></td>
-            <td><i class="fa fa-check" aria-hidden="true"></i></td>
+            <td>{% bs_icon 'check' %}</td>
+            <td>{% bs_icon 'check' %}</td>
+            <td>{% bs_icon 'check' %}</td>
+            <td>{% bs_icon 'check' %}</td>
           </tr>
          
         </tbody>
