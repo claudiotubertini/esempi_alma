@@ -781,6 +781,89 @@ new Chart(
 })();
 
 </script>
+<div class="row">
+  <div class="col-2">
+    
+  </div>
+<div class="col-8">
+    <div class="chart_container" style="width: 600;">
+        <canvas id="iscritti"></canvas>
+    </div>
+  </div>
+  <div class="col-2">
+    
+  </div>
+</div>
+<script type="text/javascript">
+  (async function() {
+    const  dataiscritti = [
+    {x:'2010/11',y:452218.0},
+    {x:'2011/12',y:442416.0},
+    {x:'2012/13',y:428647.0},
+    {x:'2013/14',y:429393.0},
+    {x:'2014/15',y:431761.0},
+    {x:'2015/16',y:431418.0},
+    {x:'2016/17',y:456425.0},
+    {x:'2017/18',y:470969.0},
+    {x:'2018/19',y:489487.0},
+    {x:'2019/20',y:522922.0},
+    {x:'2020/21',y:570105.0},
+    {x:'2021/22',y:552004.0},
+    {x:'2022/23',y:568450.0}
+      ];
+    const dataiscritti2 = [
+    452218.0, 442416.0, 428647.0, 429393.0, 431761.0, 431418.0, 456425.0, 470969.0, 489487.0, 522922.0, 570105.0, 552004.0, 568450.0
+    ];
+//const labels = ['2010','2011','2012','2013','2014','2015','2016','2017','2018','2019']
+var chart = new Chart(document.getElementById('iscritti'), {
+  type: 'line',
+  data: {
+    datasets: [{
+      data: dataiscritti,
+      label: 'Iscritti I anno complessivi',
+      borderColor: "#ff0066",
+      backgroundColor: "#ff0066",
+      pointRadius: 10
+    }]
+  },
+  options: {
+        aspectRatio: 1.8,
+        plugins: {
+          legend: {
+            display: true
+          },
+          tooltip: {
+            enabled: true
+          },
+          title: {
+            display: true,
+            text: 'Andamento iscritti I anno dal 2010 al 2022 (dati MUR)',
+            font: {
+                        size: 18
+                    }
+          },
+          responsive: true,
+          scales: {
+            xAxes: [{
+             fontSize: 20,
+              scaleLabel: {
+                display: true,
+                labelString: 'Date'
+              }
+            }],
+                yAxes: {
+                  title: {
+                    display: true,
+                    text: 'Studenti'
+                  },
+                  min: 400000,
+                   max: 600000,
+                }
+              }
+          
+  }}});
+  })();
+</script>
     </main>
   </div>
 </div>
